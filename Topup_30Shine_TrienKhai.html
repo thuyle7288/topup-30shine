@@ -84,6 +84,30 @@ li{margin:4px 0;font-size:13px}
 </head>
 <body>
 
+<!-- PASSWORD GATE -->
+<div id="pw-gate" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#1B3A6B;z-index:9999;display:flex;align-items:center;justify-content:center">
+<div style="background:#fff;border-radius:16px;padding:40px;text-align:center;max-width:360px;box-shadow:0 8px 30px rgba(0,0,0,.3)">
+<h2 style="color:#1B3A6B;margin-bottom:6px;font-size:20px">Topup 30Shine</h2>
+<p style="color:#6b7280;font-size:13px;margin-bottom:20px">Tài liệu nội bộ — nhập mật khẩu để truy cập</p>
+<input id="pw-input" type="password" placeholder="Mật khẩu" style="width:100%;padding:12px 16px;border:2px solid #e5e7eb;border-radius:10px;font-size:15px;outline:none;margin-bottom:12px" onkeydown="if(event.key==='Enter')checkPw()">
+<button onclick="checkPw()" style="width:100%;padding:12px;background:#FF7A29;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer">Truy cập</button>
+<p id="pw-err" style="color:#E63946;font-size:12px;margin-top:10px;display:none">Sai mật khẩu</p>
+</div>
+</div>
+<script>
+function checkPw(){
+var p=document.getElementById('pw-input').value;
+if(p==='30shine2026'){
+document.getElementById('pw-gate').style.display='none';
+sessionStorage.setItem('tp_auth','1');
+}else{
+document.getElementById('pw-err').style.display='block';
+document.getElementById('pw-input').style.borderColor='#E63946';
+}
+}
+if(sessionStorage.getItem('tp_auth')==='1')document.getElementById('pw-gate').style.display='none';
+</script>
+
 <div class="hdr">
   <h1>Topup 30Shine — Triển khai chính thức</h1>
   <div class="sub">Go-live 17/04/2026 · Dành cho Nhân viên · SM · GĐKV</div>
