@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topup 30Shine — Triển khai chính thức 17/04/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1B3A6B;--orange:#FF7A29;--red:#E63946;--green:#2d8a4e;--green-lt:#e6f4ea;--yellow:#FFF4CE;--bg:#f4f6f9;--card:#fff;--text:#1a1a2e;--muted:#6b7280;--border:#e5e7eb;--shadow:0 2px 10px rgba(27,58,107,.06)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Be Vietnam Pro',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+.hdr{background:linear-gradient(135deg,var(--navy),#2a5290);color:#fff;padding:16px 24px;position:sticky;top:0;z-index:100;border-bottom:4px solid var(--orange)}
+.hdr h1{font-size:18px;font-weight:700}
+.hdr .sub{font-size:12px;opacity:.8;margin-top:2px}
+.tabs{display:flex;background:#fff;border-bottom:2px solid var(--border);overflow-x:auto;position:sticky;top:66px;z-index:99}
+.tab{padding:14px 18px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);border:none;background:none;white-space:nowrap;border-bottom:3px solid transparent}
+.tab:hover{color:var(--navy);background:#f8f9ff}
+.tab.active{color:var(--navy);border-bottom-color:var(--orange)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.sec{display:none;padding:24px 0 60px}
+.sec.active{display:block}
+.c{background:#fff;border-radius:14px;padding:22px;box-shadow:var(--shadow);margin-bottom:18px;border:1px solid var(--border)}
+.c-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--orange)}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--navy);color:#fff;padding:10px 12px;text-align:left;font-weight:600;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid var(--border)}
+tr:nth-child(even){background:#f8f9fc}
+.n{text-align:right;font-variant-numeric:tabular-nums}
+.hl{background:#fff8dc!important;font-weight:600}
+.tier-h{background:var(--navy);color:#fff;padding:10px 14px;font-size:12px;font-weight:700;letter-spacing:.5px;border-radius:8px 8px 0 0;margin-top:18px}
+.tier-h.e{background:var(--orange)}.tier-h.c{background:var(--navy)}.tier-h.l{background:#8e44ad}
+.alert{border-left:4px solid;padding:12px 16px;border-radius:0 10px 10px 0;margin:10px 0;font-size:13px}
+.alert.w{background:#fff8e1;border-color:#f5a623}
+.alert.r{background:#ffe8e8;border-color:var(--red)}
+.alert.g{background:var(--green-lt);border-color:var(--green)}
+.alert.b{background:#eaf2ff;border-color:var(--navy)}
+.alert b{display:block;font-size:13px;margin-bottom:4px}
+.flow{counter-reset:s}
+.step{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step-n{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
+.step-c h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.step-c p{font-size:13px;color:#333}
+.step-c .meta{font-size:11px;color:var(--muted);margin-top:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.box{border:1px solid var(--border);border-radius:10px;padding:14px;background:#fafbfc}
+.box h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.kbd{display:inline-block;padding:2px 8px;background:#eee;border-radius:6px;font-family:monospace;font-size:12px;font-weight:600;color:var(--navy)}
+ul,ol{padding-left:20px}
+li{margin:4px 0;font-size:13px}
+.faq{margin:10px 0;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.faq summary{padding:12px 16px;background:#fafbfc;cursor:pointer;font-weight:600;font-size:13px;color:var(--navy);list-style:none}
+.faq summary::before{content:'▸ ';color:var(--orange)}
+.faq[open] summary::before{content:'▾ '}
+.faq-body{padding:12px 16px;background:#fff;font-size:13px;line-height:1.7}
+.faq-body b{color:var(--navy)}
+.timeline{display:flex;gap:12px;overflow-x:auto;padding:10px 0}
+.tl-item{flex:0 0 220px;border:2px solid var(--navy);border-radius:12px;padding:14px}
+.tl-item .dt{font-size:16px;font-weight:800;color:var(--orange)}
+.tl-item .tt{font-size:13px;font-weight:700;color:var(--navy);margin:4px 0}
+.tl-item p{font-size:12px;color:#333}
+.key-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:18px}
+.kf{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.kf .v{font-size:22px;font-weight:800;color:var(--navy)}
+.kf .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+
+/* PRINT — show all sections for PDF export */
+@media print{
+  .hdr{position:static}.tabs{display:none}
+  .sec{display:block!important;page-break-before:always;padding:10px 0}
+  .sec:first-of-type{page-break-before:avoid}
+  body{font-size:11px}
+  .c{box-shadow:none;break-inside:avoid}
+  .flow-step,.step,.box,.kf,.tl-item{break-inside:avoid}
+  table{font-size:10px!important}
+  .faq{break-inside:avoid}
+  .faq summary::before{content:''!important}
+  details{page-break-inside:avoid}
+  details:not([open]) .faq-body{display:block!important}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>Topup 30Shine — Triển khai chính thức</h1>
+  <div class="sub">Go-live 17/04/2026 · Dành cho Nhân viên · SM · GĐKV</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="go('s1')">14 gói chính thức</button>
+  <button class="tab" onclick="go('s2')">Hoa hồng NV</button>
+  <button class="tab" onclick="go('s3')">Vận hành: Đổi · Gia hạn · Nạp thêm</button>
+  <button class="tab" onclick="go('s5')">Mốc thời gian</button>
+  <button class="tab" onclick="go('s7')">Dự tính DT theo salon</button>
+  <button class="tab" onclick="go('s6')">FAQ — Trả lời KH</button>
+</div>
+
+<div class="wrap">
+
+<!-- ============ S1: 14 GÓI ============ -->
+<div class="sec active" id="s1">
+<div class="key-facts">
+  <div class="kf"><div class="v">14</div><div class="l">Gói chính thức</div></div>
+  <div class="kf"><div class="v">12 tháng</div><div class="l">Hạn sử dụng</div></div>
+  <div class="kf"><div class="v">3 tầng</div><div class="l">Entry / Core / Loyalty</div></div>
+  <div class="kf"><div class="v">17/04</div><div class="l">On bán chính thức</div></div>
+</div>
+
+<div class="c">
+<div class="c-title">Danh mục 14 gói — bán từ 00:00 ngày 17/04/2026</div>
+<div class="alert b"><b>Cách nhớ nhanh: 2 · 8 · 4</b>2 gói Entry (3 buổi) + 8 gói Core (6+1) + 4 gói Loyalty (10+2). Tất cả hạn 12 tháng kể từ ngày mua.</div>
+
+<div class="grid2" style="grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0">
+  <div class="box" style="border-top:4px solid var(--orange)">
+    <h4 style="color:var(--orange)">★ "Lần đầu quen nhau"</h4>
+    <p style="font-size:12px;color:#333"><b>Entry · gói 3 buổi</b> — nhẹ nhàng, không áp lực. "Anh thử đi, lần sau đến em nhận ra anh liền".</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:6px">🎯 Bán cho: <b>F1 (đến 1 lần)</b></p>
+  </div>
+  <div class="box" style="border-top:4px solid var(--navy)">
+    <h4 style="color:var(--navy)">■ "Anh chọn em!"</h4>
+    <p style="font-size:12px;color:#333"><b>Core · gói 6+1</b> — KH đã chọn 30Shine, NV phục vụ xứng đáng. KH cảm thấy có quyền lực, được tôn trọng.</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:6px">🎯 Bán cho: <b>F2–F4 (đến 2–4 lần)</b></p>
+  </div>
+  <div class="box" style="border-top:4px solid #8e44ad">
+    <h4 style="color:#8e44ad">◆ "Thả tym!"</h4>
+    <p style="font-size:12px;color:#333"><b>Loyalty · gói 10+2</b> — mối quan hệ hai chiều. "Chúng em hiểu anh, gắn bó dài lâu". KH thường tự upsell.</p>
+    <p style="font-size:11px;color:var(--muted);margin-top:6px">🎯 Bán cho: <b>KH trung thành · không push F5+</b></p>
+  </div>
+</div>
+
+<div class="c" style="background:#f0fff4;border:2px solid var(--green);box-shadow:none;margin:18px 0">
+<div class="c-title" style="color:var(--green);border-bottom-color:var(--green)">Góc nhìn Giám đốc Khối Thương mại — Tại sao KH mua Topup?</div>
+<p style="font-size:13px;margin-bottom:12px"><i>Góc nhìn cũ chỉ nói "tiết kiệm 14%" — đúng nhưng chưa đủ. KH 30Shine không mua vì tiết kiệm vài chục nghìn. Họ mua vì:</i></p>
+
+<div style="font-size:13px;line-height:1.75">
+
+<p style="margin:10px 0"><b style="color:var(--orange)">① "Lần đầu quen nhau" (Entry) — Nhẹ nhàng, không áp lực</b><br>
+KH lần đầu hoặc chưa quen: mua gói 3 buổi 329K như một cái bắt tay — <i>"anh thử đi, lần sau đến em nhận ra anh liền"</i>. Không pitch tiết kiệm, pitch <b>sự tiện lợi + được nhận ra</b>.</p>
+
+<p style="margin:10px 0"><b style="color:var(--navy)">② "Anh chọn em!" (Core 6+1) — KH đã chọn, NV phục vụ xứng đáng</b><br>
+KH đã đến 2-4 lần, đã có NV quen. Mua gói 6+1 = KH chọn 30Shine, chọn NV mình thích. <i>"Anh chọn em rồi — em phục vụ tốt cho anh."</i> KH cảm thấy có quyền lực, được tôn trọng. NV cảm thấy được tin tưởng → phục vụ tốt hơn. <b>Data: F2-4 tăng 32% frequency</b> — họ quay lại vì được hiểu, không phải vì giảm giá.</p>
+
+<p style="margin:10px 0"><b style="color:#8e44ad">③ "Thả tym!" (Loyalty 10+2) — Chúng em hiểu anh, gắn bó dài lâu</b><br>
+KH trung thành (<b>86,8% mua lại</b>): đây là mối quan hệ hai chiều. KH "thả tym" = tin tưởng, yêu thích. 30Shine "thả tym" lại = hiểu anh thích gì, chăm anh chu đáo. Mua gói 10+2 không phải vì deal — mà vì <i>"chúng em hiểu anh"</i>. <b>40,2% KH tự upsell từ 6+1 lên</b> → họ TỰ muốn gắn bó, không cần push.</p>
+
+<p style="margin:10px 0"><b style="color:var(--green)">④ Chi tiêu có phong cách — không phải mặc cả</b><br>
+KH nam 30Shine không muốn bị thấy keo kiệt. Mua topup = <b>chi tiêu thông minh, có kế hoạch</b> — giống mua gói gym, gói Netflix. Đó là phong cách sống, không phải săn giảm giá.</p>
+
+</div>
+
+<div class="alert g" style="margin-top:14px;font-size:13px"><b>→ 3 tầng = 3 giai đoạn tình cảm</b>Quen nhau → Anh chọn em → Thả tym. <b>NV không bán giảm giá — NV xây mối quan hệ</b> mà KH tự muốn gắn bó.</div>
+
+<div class="alert b" style="margin-top:10px;font-size:12px"><b>Data xác nhận phễu</b>41,6% KH Entry tự upsell lên Core · 40,2% KH Core tự upsell lên Loyalty · 86,8% KH Loyalty mua lại. → Không cần push, phục vụ đúng KH tự nâng gói.</div>
+</div>
+
+<div class="alert g"><b>Insight: Bán cho ai? (F0 → F5+)</b>
+<ul style="margin-top:4px">
+<li><b>F0</b> (lần đầu tới salon) → <b>KHÔNG bán topup</b>. Phục vụ tốt trước đã.</li>
+<li><b>F1</b> (đến 1 lần) → Pitch gói 3 buổi "Lần đầu quen nhau" (E1/E2).</li>
+<li><b>F2–F4</b> (đến 2–4 lần) → Pitch gói 6+1 "Anh chọn em!". KH ngại giá → hạ xuống gói 3.</li>
+<li><b>F5+</b> (khách quen rất thân) → <b>KHÔNG chủ động push</b>. KH tự mua 10+2 thì OK (lock-in). Push effort → ROI thấp vì F5+ đã đến đều rồi.</li>
+</ul>
+</div>
+
+<div class="alert r" style="margin:14px 0"><b>HƯỚNG DẪN CHO IT + VẬN HÀNH — tái sử dụng mã cũ, không tạo mới</b>
+<p style="margin-top:6px">14 gói mới (tiêu chuẩn) + 8 gói thương gia được map sang <b>IdSPTopup + IdCampTopup đã có trên hệ thống</b> (dữ liệu gốc "Topup 20/03/2026"). IT <b>CHỈ cần 3 thao tác</b>:</p>
+<ol style="margin-top:4px;padding-left:24px">
+<li>Update <b>giá Topup</b> theo cột "Giá Topup MỚI" (cột in đậm).</li>
+<li>Update <b>HSD về 365 ngày = 12 tháng</b> cho tất cả 22 gói (gói cũ có HSD 180 / 445 / 456 / 480 ngày — cần đồng bộ về 365).</li>
+<li>Chỉ <b>tạo mới 2 mã</b>: <b>E1-TG</b> (Combo 1 First Class 1 · 3 buổi · ID DV 1052) và <b>C-TG FC3</b> (Combo First Class 3 · 10+2 · ID DV 1054 · IdSPTopup 5324) — hiện chưa có trên hệ thống.</li>
+</ol>
+<p style="margin-top:6px">Không đổi IdSPTopup · không đổi IdCampTopup · không đổi tên → NV/SM vẫn tra cứu theo code quen thuộc, IT xử lý cực nhanh.</p></div>
+
+<div class="alert b" style="font-size:12px;margin:10px 0"><b>Cách đọc bảng (cho SM · NV · GĐKV · IT)</b>
+<ul style="margin-top:4px">
+<li><b>IdSPTopup / IdCamp</b> = mã sản phẩm + mã campaign trên hệ thống cũ. IT dùng để search & update. NV/SM không cần nhớ.</li>
+<li><b>ID DV</b> = ID dịch vụ (NV tra POS theo ID này khi thực hiện buổi).</li>
+<li><b>Tên DV</b> = tên dịch vụ gốc trên hệ thống — NV dùng để pitch: "Topup ShineCombo mua 6 tặng 1…".</li>
+<li><b>Giá cũ</b> (chữ xám) = giá Topup đang có trên hệ thống — chỉ để IT đối chiếu.</li>
+<li><b>Giá Topup MỚI</b> = giá chính thức áp dụng từ 17/04 (IT update vào mã cũ).</li>
+<li><b>HSD</b> = chuẩn hoá 365 ngày cho toàn bộ 22 gói.</li>
+<li><b>CK %</b> = % giảm giá/buổi so giá lẻ → con số ngắn gọn NV pitch KH.</li>
+<li><b>Tổng lợi</b> = số tiền KH tiết kiệm cho cả gói → con số "ăn tiền" khi chốt.</li>
+</ul></div>
+
+<div class="tier-h e">TẦNG ENTRY — "Lần đầu quen nhau" · 3 buổi · 2 gói</div>
+<div class="tw"><table style="font-size:11.5px">
+<tr><th>Mã</th><th>IdSPTopup<br>(cũ · IT dùng)</th><th>IdCamp<br>(cũ · IT dùng)</th><th>ID DV</th><th>Tên DV</th><th class="n">Giá lẻ</th><th class="n">Số buổi</th><th class="n" style="color:#999">Giá cũ</th><th class="n">Giá Topup MỚI</th><th class="n">HSD<br>(ngày)</th><th class="n">CK %</th><th class="n">Tổng lợi</th></tr>
+<tr><td><b>E1</b></td><td><b>5677</b></td><td>4020</td><td>513</td><td style="font-size:11px">ShineCombo 10 bước Ultra Care</td><td class="n">122đ</td><td class="n">3</td><td class="n" style="color:#999">324K</td><td class="n"><b>329.000đ</b></td><td class="n">365</td><td class="n gd"><b>10,1%</b></td><td class="n gd">37.000đ</td></tr>
+<tr><td><b>E2</b></td><td><b>5837</b></td><td>4218</td><td>1058</td><td style="font-size:11px">Gội Combo 2</td><td class="n">159đ</td><td class="n">3</td><td class="n" style="color:#999">375K</td><td class="n"><b>429.000đ</b></td><td class="n">365</td><td class="n gd"><b>10,1%</b></td><td class="n gd">48.000đ</td></tr>
+</table></div>
+
+<div class="tier-h c">TẦNG CORE — "Anh chọn em!" · 6+1 = 7 buổi · 8 gói</div>
+<div class="tw"><table style="font-size:11.5px">
+<tr><th>Mã</th><th>IdSPTopup<br>(cũ · IT dùng)</th><th>IdCamp<br>(cũ · IT dùng)</th><th>ID DV</th><th>Tên DV</th><th class="n">Giá lẻ</th><th class="n">Số buổi</th><th class="n" style="color:#999">Giá cũ</th><th class="n">Giá Topup MỚI</th><th class="n">HSD<br>(ngày)</th><th class="n">CK %</th><th class="n">Tổng lợi</th></tr>
+<tr><td><b>A1</b></td><td><b>5722</b></td><td>4106</td><td>891</td><td style="font-size:11px">Cắt xả tạo kiểu</td><td class="n">95đ</td><td class="n">7</td><td class="n" style="color:#999">540K</td><td class="n"><b>570.000đ</b></td><td class="n">365</td><td class="n gd"><b>14,3%</b></td><td class="n gd">95.000đ</td></tr>
+<tr><td><b>A2</b></td><td><b>5670</b></td><td>4006</td><td>513</td><td style="font-size:11px">ShineCombo 10 bước Ultra Care</td><td class="n">122đ</td><td class="n">7</td><td class="n" style="color:#999">720K</td><td class="n"><b>720.000đ</b></td><td class="n">365</td><td class="n gd"><b>15,7%</b></td><td class="n gd">134.000đ</td></tr>
+<tr><td><b>A3</b></td><td><b>5301</b></td><td>3542</td><td>1046</td><td style="font-size:11px">Shinecombo 2</td><td class="n">199đ</td><td class="n">7</td><td class="n" style="color:#999">1.128K</td><td class="n"><b>1,200.000đ</b></td><td class="n">365</td><td class="n gd"><b>13,9%</b></td><td class="n gd">193.000đ</td></tr>
+<tr class="hl"><td><b>A4</b></td><td><b>5303</b></td><td>3544</td><td>1047</td><td style="font-size:11px">Cắt Gội Combo 3 - Chăm da</td><td class="n">299đ</td><td class="n">7</td><td class="n" style="color:#999">1.794K</td><td class="n"><b>1,800.000đ</b></td><td class="n">365</td><td class="n gd"><b>14,0%</b></td><td class="n gd">293.000đ</td></tr>
+<tr class="hl"><td><b>A5</b></td><td><b>5305</b></td><td>3546</td><td>1048</td><td style="font-size:11px">Combo 4</td><td class="n">389đ</td><td class="n">7</td><td class="n" style="color:#999">2.274K</td><td class="n"><b>2,340.000đ</b></td><td class="n">365</td><td class="n gd"><b>14,1%</b></td><td class="n gd">383.000đ</td></tr>
+<tr><td><b>B1</b></td><td><b>5337</b></td><td>3595</td><td>1058</td><td style="font-size:11px">Gội Combo 2</td><td class="n">159đ</td><td class="n">7</td><td class="n" style="color:#999">834K</td><td class="n"><b>900.000đ</b></td><td class="n">365</td><td class="n gd"><b>19,1%</b></td><td class="n gd">213.000đ</td></tr>
+<tr><td><b>B2</b></td><td><b>5327</b></td><td>3574</td><td>1059</td><td style="font-size:11px">Gội Combo 3 - Chăm da</td><td class="n">219đ</td><td class="n">7</td><td class="n" style="color:#999">1.314K</td><td class="n"><b>1,240.000đ</b></td><td class="n">365</td><td class="n gd"><b>19,1%</b></td><td class="n gd">293.000đ</td></tr>
+<tr><td><b>B3</b></td><td><b>5238</b></td><td>3397</td><td>1060</td><td style="font-size:11px">Gội Combo 4</td><td class="n">289đ</td><td class="n">7</td><td class="n" style="color:#999">1.734K</td><td class="n"><b>1,640.000đ</b></td><td class="n">365</td><td class="n gd"><b>18,9%</b></td><td class="n gd">383.000đ</td></tr>
+</table></div>
+
+<div class="tier-h l">TẦNG LOYALTY — "Thả tym!" · 10+2 = 12 buổi · 4 gói</div>
+<div class="tw"><table style="font-size:11.5px">
+<tr><th>Mã</th><th>IdSPTopup<br>(cũ · IT dùng)</th><th>IdCamp<br>(cũ · IT dùng)</th><th>ID DV</th><th>Tên DV</th><th class="n">Giá lẻ</th><th class="n">Số buổi</th><th class="n" style="color:#999">Giá cũ</th><th class="n">Giá Topup MỚI</th><th class="n">HSD<br>(ngày)</th><th class="n">CK %</th><th class="n">Tổng lợi</th></tr>
+<tr><td><b>C1</b></td><td><b>5671</b></td><td>4007</td><td>513</td><td style="font-size:11px">ShineCombo 10 bước Ultra Care</td><td class="n">122đ</td><td class="n">12</td><td class="n" style="color:#999">1.200K</td><td class="n"><b>1,150.000đ</b></td><td class="n">365</td><td class="n gd"><b>21,4%</b></td><td class="n gd">314.000đ</td></tr>
+<tr><td><b>C2</b></td><td><b>5302</b></td><td>3543</td><td>1046</td><td style="font-size:11px">Shinecombo 2</td><td class="n">199đ</td><td class="n">12</td><td class="n" style="color:#999">1.880K</td><td class="n"><b>1,720.000đ</b></td><td class="n">365</td><td class="n gd"><b>28,0%</b></td><td class="n gd">668.000đ</td></tr>
+<tr class="hl"><td><b>C3</b></td><td><b>5332</b></td><td>3590</td><td>1048</td><td style="font-size:11px">Combo 4</td><td class="n">389đ</td><td class="n">12</td><td class="n" style="color:#999">3.790K</td><td class="n"><b>3,360.000đ</b></td><td class="n">365</td><td class="n gd"><b>28,0%</b></td><td class="n gd">1,308.000đ</td></tr>
+<tr class="hl"><td><b>C4</b></td><td><b>5239</b></td><td>3398</td><td>1060</td><td style="font-size:11px">Gội Combo 4</td><td class="n">289đ</td><td class="n">12</td><td class="n" style="color:#999">2.890K</td><td class="n"><b>2,500.000đ</b></td><td class="n">365</td><td class="n gd"><b>27,9%</b></td><td class="n gd">968.000đ</td></tr>
+</table></div>
+
+<div class="alert g" style="margin-top:14px;font-size:12px"><b>Gợi ý NV pitch KH — kết hợp CK % + Tổng lợi (đ)</b>
+<ul style="margin-top:4px">
+<li><b>Entry — CK 10% · lợi 37–48K</b> — "Anh mua gói 3 buổi, <b>rẻ hơn 10% – tiết kiệm 37–48K ngay</b>, lần sau đến em nhận ra anh liền."</li>
+<li><b>Core — CK 14–19% · lợi 95–383K</b> — "Mua 6 tặng 1, <b>tiết kiệm ~15% tương đương 134K–383K</b>, giá/buổi chỉ còn X.XXXđ — đúng combo anh hay dùng."</li>
+<li><b>Loyalty — CK 21–28% · lợi 314K–1,3 triệu</b> — "Mua 10 tặng 2 — gói này <b>lợi nhất, CK tới 28% tức tiết kiệm tới 1,3 triệu</b>, dùng dần 12 tháng."</li>
+</ul></div>
+
+<div class="c" style="border:2px solid #8e44ad;margin-top:20px">
+<div class="c-title" style="color:#8e44ad;border-bottom-color:#8e44ad">SALON THƯƠNG GIA — 9 gói riêng (8 salon: 10 TP · 103 TN · 1180 QT · 12 LDT · 168 NVC · 237 NTT · 25 TD · 927 HG)</div>
+
+<div class="alert b"><b>Bản chất là dịch vụ khác — định vị cao hơn, trải nghiệm khác</b>
+<p style="margin-top:4px">Salon thương gia dùng dòng <b>First Class</b> (ID 1052/1053/1054/1055) thay cho ShineCombo/Combo tiêu chuẩn (ID 513/1046/1047/1048). Giá lẻ cao hơn → giá Topup tương ứng cao hơn, nhưng <b>CK % giữ nguyên</b> để KH thương gia vẫn cảm nhận lợi ích tương đương. NV salon thương gia dùng bảng này — <b>không pitch giá salon tiêu chuẩn</b> cho KH.</p></div>
+
+<div class="alert w" style="font-size:12px"><b>Mapping ID: Tiêu chuẩn → Thương gia</b>
+<ul style="margin-top:4px">
+<li>513 ShineCombo (122K) → <b>1052 First Class 1 (139K)</b></li>
+<li>1046 ShineCombo 2 (199K) → <b>1053 First Class 2 (242K)</b></li>
+<li>1047 Combo 3 Chăm da (299K) → <b>1054 First Class 3 (312K)</b></li>
+<li>1048 Combo 4 (389K) → <b>1055 First Class 4 (413K)</b></li>
+</ul></div>
+
+<div class="tier-h e" style="margin-top:14px">ENTRY THƯƠNG GIA — 3 buổi · 1 gói</div>
+<div class="tw"><table style="font-size:11.5px">
+<tr><th>Mã</th><th>IdSPTopup<br>(cũ · IT dùng)</th><th>IdCamp<br>(cũ · IT dùng)</th><th>ID DV</th><th>Tên DV</th><th class="n">Giá lẻ</th><th class="n">Số buổi</th><th class="n" style="color:#999">Giá cũ</th><th class="n">Giá Topup MỚI</th><th class="n">HSD<br>(ngày)</th><th class="n">CK %</th><th class="n">Tổng lợi</th></tr>
+<tr><td><b>E1-TG</b></td><td><b>TẠO MỚI</b></td><td>—</td><td>1052</td><td style="font-size:11px">Combo 1 - First Class 1</td><td class="n">139đ</td><td class="n">3</td><td class="n" style="color:#999">—</td><td class="n"><b>380.000đ</b></td><td class="n">365</td><td class="n gd"><b>10,1%</b></td><td class="n gd">37.000đ</td></tr>
+</table></div>
+<div class="tier-h c">CORE THƯƠNG GIA — 6+1 · 4 gói</div>
+<div class="tw"><table style="font-size:11.5px">
+<tr><th>Mã</th><th>IdSPTopup<br>(cũ · IT dùng)</th><th>IdCamp<br>(cũ · IT dùng)</th><th>ID DV</th><th>Tên DV</th><th class="n">Giá lẻ</th><th class="n">Số buổi</th><th class="n" style="color:#999">Giá cũ</th><th class="n">Giá Topup MỚI</th><th class="n">HSD<br>(ngày)</th><th class="n">CK %</th><th class="n">Tổng lợi</th></tr>
+<tr><td><b>A2-TG</b></td><td><b>5674</b></td><td>4012</td><td>1052</td><td style="font-size:11px">Combo 1 - First Class 1</td><td class="n">139đ</td><td class="n">7</td><td class="n" style="color:#999">834K</td><td class="n"><b>820.000đ</b></td><td class="n">365</td><td class="n gd"><b>15,7%</b></td><td class="n gd">153.000đ</td></tr>
+<tr><td><b>A3-TG</b></td><td><b>5321</b></td><td>3568</td><td>1053</td><td style="font-size:11px">Combo First Class 2</td><td class="n">242đ</td><td class="n">7</td><td class="n" style="color:#999">1.374K</td><td class="n"><b>1,460.000đ</b></td><td class="n">365</td><td class="n gd"><b>13,9%</b></td><td class="n gd">234.000đ</td></tr>
+<tr class="hl"><td><b>A4-TG</b></td><td><b>5323</b></td><td>3570</td><td>1054</td><td style="font-size:11px">Combo First Class 3</td><td class="n">312đ</td><td class="n">7</td><td class="n" style="color:#999">1.794K</td><td class="n"><b>1,880.000đ</b></td><td class="n">365</td><td class="n gd"><b>14,0%</b></td><td class="n gd">304.000đ</td></tr>
+<tr class="hl"><td><b>A5-TG</b></td><td><b>5325</b></td><td>3572</td><td>1055</td><td style="font-size:11px">Combo First Class 4</td><td class="n">413đ</td><td class="n">7</td><td class="n" style="color:#999">2.394K</td><td class="n"><b>2,480.000đ</b></td><td class="n">365</td><td class="n gd"><b>14,1%</b></td><td class="n gd">411.000đ</td></tr>
+</table></div>
+
+<div class="tier-h l">LOYALTY THƯƠNG GIA — 10+2 · 4 gói</div>
+<div class="tw"><table style="font-size:11.5px">
+<tr><th>Mã</th><th>IdSPTopup<br>(cũ · IT dùng)</th><th>IdCamp<br>(cũ · IT dùng)</th><th>ID DV</th><th>Tên DV</th><th class="n">Giá lẻ</th><th class="n">Số buổi</th><th class="n" style="color:#999">Giá cũ</th><th class="n">Giá Topup MỚI</th><th class="n">HSD<br>(ngày)</th><th class="n">CK %</th><th class="n">Tổng lợi</th></tr>
+<tr><td><b>C1-TG</b></td><td><b>5673</b></td><td>4011</td><td>1052</td><td style="font-size:11px">Combo 1 - First Class 1</td><td class="n">139đ</td><td class="n">12</td><td class="n" style="color:#999">1.390K</td><td class="n"><b>1,310.000đ</b></td><td class="n">365</td><td class="n gd"><b>21,4%</b></td><td class="n gd">358.000đ</td></tr>
+<tr><td><b>C2-TG</b></td><td><b>5322</b></td><td>3569</td><td>1053</td><td style="font-size:11px">Combo First Class 2</td><td class="n">242đ</td><td class="n">12</td><td class="n" style="color:#999">2.290K</td><td class="n"><b>2,090.000đ</b></td><td class="n">365</td><td class="n gd"><b>28,0%</b></td><td class="n gd">814.000đ</td></tr>
+<tr class="hl" style="background:#fff3cd"><td><b>C3-TG<br>(MỚI)</b></td><td><b>5324</b></td><td>—</td><td>1054</td><td style="font-size:11px">Combo First Class 3</td><td class="n">312đ</td><td class="n">12</td><td class="n" style="color:#999">—</td><td class="n"><b>2,680.000đ</b></td><td class="n">365</td><td class="n gd"><b>28,4%</b></td><td class="n gd">1,064.000đ</td></tr>
+<tr class="hl"><td><b>C4-TG</b></td><td><b>5340</b></td><td>3598</td><td>1055</td><td style="font-size:11px">Combo First Class 4</td><td class="n">413đ</td><td class="n">12</td><td class="n" style="color:#999">3.990K</td><td class="n"><b>3,570.000đ</b></td><td class="n">365</td><td class="n gd"><b>28,0%</b></td><td class="n gd">1,386.000đ</td></tr>
+</table></div>
+
+<div class="alert g" style="margin-top:14px;font-size:12px"><b>Lưu ý cho 8 salon thương gia</b>
+<ul style="margin-top:4px">
+<li><b>Gói Gội</b> (B1/B2/B3/C4 dùng ID 1058/1059/1060): giá Gội giống nhau giữa tiêu chuẩn và thương gia → <b>áp bảng tiêu chuẩn ở trên</b>.</li>
+<li><b>Gói Cắt</b> (E1/A2-A5/C1-C4 TG): salon thương gia dùng bảng <b>TG ở đây</b>, không dùng bảng tiêu chuẩn.</li>
+<li>HH NV áp cùng 3 mức: 30K (Entry) · 50K (Core dưới 1,8M) · 100K (≥1,8M) — không thay đổi theo loại salon.</li>
+</ul></div>
+</div>
+</div>
+</div>
+
+<!-- ============ S2: HOA HỒNG ============ -->
+<div class="sec" id="s2">
+<div class="c">
+<div class="c-title">Hoa hồng NV — áp dụng 2 giai đoạn</div>
+
+<div class="alert b"><b>Nguyên tắc</b>Hệ thống sẽ tự động chuyển mức HH vào 00:00 ngày 01/05. <b>SM & NV KHÔNG cần làm gì</b> — không điều chỉnh thủ công.</div>
+
+<div class="grid2">
+  <div class="box">
+    <h4>Giai đoạn 1 · 17/04 → 30/04</h4>
+    <p style="font-size:13px">Giữ nguyên mức HH cũ đang chạy (theo data lịch sử ~ <b>5% và 7%</b> giá topup tuỳ gói). Doanh thu tháng 4 không bị xáo trộn.</p>
+  </div>
+  <div class="box" style="background:#fff8e1;border-color:#f5a623">
+    <h4>Giai đoạn 2 · Từ 01/05</h4>
+    <p style="font-size:13px">Áp mức HH mới theo bảng dưới — 3 mức tuyệt đối (30K / 50K / 100K), không còn tính theo %.</p>
+  </div>
+</div>
+
+<div style="margin-top:18px"><b style="color:var(--navy)">So sánh HH cũ (theo data) vs HH mới từ 01/05</b></div>
+<div class="tw"><table style="font-size:12px">
+<tr><th>Tầng</th><th>Gói</th><th class="n">Giá Topup</th><th class="n">HH cũ (~5–7%)</th><th class="n">HH mới</th><th class="n">Chênh lệch</th></tr>
+<tr><td><b style="color:var(--orange)">Entry</b></td><td>E1 ShineCombo 3 buổi</td><td class="n">329K</td><td class="n">~16–23K</td><td class="n"><b style="color:var(--orange)">30K</b></td><td class="n gd">+7–14K</td></tr>
+<tr><td><b style="color:var(--orange)">Entry</b></td><td>E2 Gội Combo 2 — 3 buổi</td><td class="n">429K</td><td class="n">~21–30K</td><td class="n"><b style="color:var(--orange)">30K</b></td><td class="n gd">+0–9K</td></tr>
+<tr><td><b style="color:var(--navy)">Core</b></td><td>A2 ShineCombo 6+1</td><td class="n">720K</td><td class="n">~36–50K</td><td class="n"><b style="color:var(--navy)">50K</b></td><td class="n gd">+0–14K</td></tr>
+<tr><td><b style="color:var(--navy)">Core</b></td><td>A3 ShineCombo 2 — 6+1</td><td class="n">1.200K</td><td class="n">~60–84K</td><td class="n"><b style="color:var(--navy)">50K</b></td><td class="n bd">−10 đến −34K</td></tr>
+<tr class="hl"><td><b style="color:#8e44ad">Loyalty cao</b></td><td>A4/A5 Cắt Gội C3/Combo 4 — 6+1 (≥1,8M)</td><td class="n">1,8M – 2,34M</td><td class="n">~90–164K</td><td class="n"><b style="color:var(--red)">100K</b></td><td class="n">~ngang bằng</td></tr>
+<tr class="hl"><td><b style="color:#8e44ad">Loyalty cao</b></td><td>C3/C4 Combo 4/Gội Combo 4 — 10+2 (≥2,5M)</td><td class="n">2,5M – 3,36M</td><td class="n">~125–235K</td><td class="n"><b style="color:var(--red)">100K</b></td><td class="n bd">−25 đến −135K</td></tr>
+</table></div>
+<div class="alert w" style="font-size:12px;margin-top:8px"><b>Hàm ý</b>HH cũ tính theo % → bán gói cao cấp được HH cao hơn nhưng khó nhớ (32K–131K rải rác, data 15 tháng ghi nhận ~5–7%). HH mới cố định 3 mức → đổi trọng tâm: <b>số lượng gói × HH cố định</b> thay vì <b>% × giá gói</b>. Tầng Entry + Core 6+1 dưới 1,8M <b>tăng thu nhập NV</b>; tầng cao cấp A3/C3/C4 giảm nhẹ nhưng bù lại dễ bán hơn vì brand đã quen.</div>
+
+<div style="margin-top:18px"><b style="color:var(--navy)">Bảng HH mới từ 01/05/2026 — 3 mức dễ nhớ</b></div>
+<div class="tw"><table>
+<tr><th>Mức</th><th>Tên thương mại</th><th>Gói áp dụng</th><th class="n">HH/gói</th></tr>
+<tr><td style="color:var(--orange);font-weight:700">30K</td><td><b>★ "Lần đầu quen nhau"</b></td><td>E1, E2 (3 buổi)</td><td class="n"><b style="color:var(--orange)">30.000đ</b></td></tr>
+<tr><td style="color:var(--navy);font-weight:700">50K</td><td><b>■ "Anh chọn em!"</b></td><td>A1, A2, A3, B1, B2, B3 (6+1 dưới 1,8M) + C1, C2 (10+2 dưới 1,8M)</td><td class="n"><b style="color:var(--navy)">50.000đ</b></td></tr>
+<tr class="hl"><td style="color:#8e44ad;font-weight:700">100K</td><td><b>◆ "Thả tym!"</b></td><td>A4, A5 (6+1 ≥1,8M) + C3, C4 (10+2 ≥2,5M)</td><td class="n"><b style="color:var(--red)">100.000đ</b></td></tr>
+</table></div>
+</div>
+
+<!-- LƯU Ý QUAN TRỌNG - NHÓM NHÂN SỰ THAM GIA -->
+<div class="c" style="border:2px solid var(--red);background:#fff8f8">
+<div class="c-title" style="color:var(--red)">⚠ LƯU Ý QUAN TRỌNG — Ai được tính HH khi bán Topup?</div>
+
+<div class="alert r"><b>Nguyên tắc</b>Topup là <b>sản phẩm giữ KH dài hạn</b> — càng nhiều NV cùng tham gia pitch, KH càng dễ đặt lịch lại, quay lại, tăng tần suất → tăng thu nhập cả đội. <b>Mọi gói bán ra BẮT BUỘC nhập mã ID nhân sự nhận HH</b>. Không nhập = hệ thống không trả HH cho ai → bỏ phí cơ hội.</div>
+
+<div style="margin-top:14px"><b style="color:var(--navy)">5 nhóm nhân sự được tính HH (ưu tiên theo thứ tự)</b></div>
+<div class="tw" style="margin-top:8px"><table style="font-size:12.5px">
+<tr><th>#</th><th>Vai trò</th><th>Khi nào tính HH?</th><th>Vì sao?</th></tr>
+<tr><td><b>1</b></td><td><b>SMST</b> (Salon Manager Stylist)</td><td>Trực tiếp pitch KH tại ghế cắt / quầy checkout</td><td>Tầm ảnh hưởng cao nhất, KH tin tưởng quyết định nhanh</td></tr>
+<tr><td><b>2</b></td><td><b>Stylist</b></td><td>Pitch KH trong lúc làm dịch vụ (cắt / tạo kiểu)</td><td>KH đã có NV quen ("Anh chọn em!") → tỷ lệ chốt cao nhất ở F2-F4</td></tr>
+<tr><td><b>3</b></td><td><b>Skinner</b></td><td>Pitch trong lúc gội / chăm da (đặc biệt gói B1-B3, C4)</td><td>Gói Gội Combo trả HH 50K-100K, skinner là người bán tự nhiên nhất</td></tr>
+<tr><td><b>4</b></td><td><b>Supporter</b></td><td>Hỗ trợ tư vấn tại quầy, tra cứu gói, làm hợp đồng</td><td>Là "cánh tay nối dài" giúp NV chính không bị gián đoạn phục vụ KH</td></tr>
+<tr><td><b>5</b></td><td><b>GĐKV</b></td><td>Khi trực tiếp chốt KH VIP / case khó / tại salon mình ghé</td><td>Ghi nhận đóng góp GĐKV ở các case escalation, lan toả văn hoá bán</td></tr>
+</table></div>
+
+<div class="alert g" style="margin-top:12px"><b>Quy tắc nhập mã ID</b>
+<ul style="margin-top:4px">
+<li><b>100% gói bán ra phải có mã ID nhân sự</b> gắn với giao dịch topup. Hệ thống chặn checkout nếu trống ID.</li>
+<li>1 gói = 1 ID chính (người pitch + chốt). Nếu có hỗ trợ → dùng tính năng "chia HH" (50/50 hoặc 70/30 theo cấu hình).</li>
+<li>SM chịu trách nhiệm kiểm tra cuối ngày: mọi topup đều có ID hợp lệ.</li>
+<li>Sai ID / điền hộ người khác = xử lý kỷ luật theo quy chế HR hiện hành.</li>
+</ul></div>
+
+<div class="alert b" style="margin-top:10px"><b>Tác dụng của việc 5 nhóm cùng tham gia</b>
+<ul style="margin-top:4px">
+<li><b>Khách book lại:</b> nhiều NV cùng chăm sóc → KH có nhiều điểm kết nối → tỷ lệ book buổi kế tăng.</li>
+<li><b>Khách quay lại:</b> Stylist quen + Skinner quen + Supporter nhớ mặt = cảm giác "cả đội nhận ra mình".</li>
+<li><b>Tăng thu nhập:</b> Topup không còn là "việc của mỗi SM/Stylist" mà là thu nhập chung. Nhân sự có thêm kênh thu nhập bên cạnh HH dịch vụ lẻ.</li>
+</ul></div>
+</div>
+</div>
+
+<!-- ============ S3: VẬN HÀNH ĐỔI · GIA HẠN · NẠP THÊM ============ -->
+<div class="sec" id="s3">
+
+<div class="alert b"><b>Triết lý thiết kế: giữ KH ở lại hệ thống, không để KH rời đi</b>
+<p style="margin-top:6px">Khối Thương mại + IT đã phân tích dữ liệu 15 tháng (27.468 gói, 20.540 KH, 216 cases hoàn — 245 triệu). Phần lớn yêu cầu hoàn phát sinh do <b>quy trình cũ thiếu rõ ràng</b>, KH cảm thấy bị mất mát → đòi tiền lại. Hệ thống mới được thiết kế ngược lại: <b>quy trình đổi cực đơn giản</b> → KH không có cảm giác mất mát → tiếp tục sử dụng → nạp thêm Topup. GĐKV và khối salon phối hợp triển khai.</p></div>
+
+<div class="c">
+<div class="c-title">Thứ tự vận hành: ĐỔI → GIA HẠN → NẠP THÊM → (Hoàn chỉ là dự phòng)</div>
+
+<div class="flow">
+  <div class="step"><div class="step-n" style="background:var(--green)">1</div><div class="step-c"><h4 style="color:var(--green)">ĐỔI SANG GÓI MỚI — đơn giản, tại quầy, KH không mất gì</h4>
+    <p>Đổi 1–1 sang gói mới tương đương. Quy trình thiết kế để <b>KH cảm thấy việc đổi đơn giản, không mất mát</b> — số buổi còn giữ nguyên, giá trị giữ nguyên, hạn mới 12 tháng. KH chỉ cần xác nhận 1 bước là xong.</p>
+    <p style="margin-top:6px;font-size:12px;color:#333"><b>Vì sao ưu tiên cao nhất?</b> Giữ KH trong hệ thống + tiếp tục đến salon = tăng tần suất + tăng LTV. Không phát sinh tiền mặt ra ngoài. KH cảm thấy được chăm sóc, không bị "đuổi đi bằng tiền hoàn".</p>
+  </div></div>
+
+  <div class="step"><div class="step-n" style="background:#c9a227">2</div><div class="step-c"><h4 style="color:#c9a227">GIA HẠN 1 LẦN · TỐI ĐA 6 THÁNG — lễ tân tick trực tiếp trên hệ thống</h4>
+    <p>KH còn buổi + hết hạn → <b>lễ tân tick "Gia hạn" trực tiếp trên POS</b>, không cần nhắn nhóm, không cần chờ ai duyệt. Hệ thống tự cộng hạn tối đa 6 tháng + gửi SMS nhắc KH quay lại sử dụng.</p>
+    <p style="margin-top:6px;font-size:12px;color:#333"><b>Mục đích:</b> Nhờ KH nhớ & quay lại salon dùng hết buổi còn. Gia hạn là cơ hội kết nối lại, không phải gia hạn rồi để đó.</p>
+  </div></div>
+
+  <div class="step"><div class="step-n" style="background:var(--navy)">3</div><div class="step-c"><h4 style="color:var(--navy)">NẠP THÊM TOPUP — KH hài lòng → tự nạp tiếp</h4>
+    <p>Khi KH đã đổi gói thành công / đã quay lại sử dụng sau gia hạn → NV tự nhiên pitch gói mới phù hợp. KH đang hài lòng = tỷ lệ chốt cao nhất. Data cũ: <b>40,2% KH tự upsell</b> khi trải nghiệm tốt.</p>
+    <p style="margin-top:6px;font-size:12px;color:#333"><b>Vì sao đặt sau Đổi/Gia hạn?</b> KH vừa được chăm sóc → cảm xúc tích cực → pitch tự nhiên, không ép. Đây là kết quả của hệ thống vận hành đúng, không phải mục tiêu riêng biệt.</p>
+  </div></div>
+</div>
+
+<div class="alert w" style="margin-top:12px"><b>Về phần Hoàn tiền</b>
+<p style="margin-top:4px">Hoàn tiền <b>giữ nguyên quy trình dự phòng</b> (SM → GĐKV → Kế toán, SLA 7 ngày) — nhưng toàn bộ nỗ lực thiết kế hệ thống mới tập trung vào <b>Đổi / Gia hạn / Nạp thêm để giữ KH ở lại</b>. Nếu quy trình đổi đủ đơn giản, gia hạn đủ nhanh, NV chăm sóc đủ tốt → số case hoàn sẽ giảm tự nhiên.</p></div>
+
+<div class="alert g" style="margin-top:10px"><b>Nguyên tắc NV quầy cần nhớ</b>
+<ul style="margin-top:4px">
+<li><b>Đổi trước, luôn luôn.</b> Hỏi: <i>"Em xem giúp anh/chị gói mới tương đương để đổi nhé — số buổi giữ nguyên, hạn mới 12 tháng."</i></li>
+<li><b>Gia hạn ngay:</b> KH hết hạn còn buổi → tick gia hạn trên POS, không cần báo ai. SMS tự gửi KH.</li>
+<li><b>Pitch nhẹ sau khi KH vui:</b> KH vừa được đổi/gia hạn thành công → đề xuất nạp thêm gói phù hợp.</li>
+<li><b>Không chủ động đề cập hoàn.</b> Nếu KH tự yêu cầu hoàn → báo SM xử lý theo luồng dự phòng.</li>
+</ul></div>
+</div>
+
+<!-- QUY TRÌNH 1: ĐỔI -->
+<div class="c" style="border-left:5px solid var(--green)">
+<div class="c-title" style="color:var(--green)">① Quy trình ĐỔI gói — đơn giản nhất có thể cho KH</div>
+
+<div class="alert g"><b>Thiết kế đã hoàn tất — bảng đổi được cài sẵn trong hệ thống</b>
+<p style="margin-top:4px">Bảng đổi 1–1 (gói cũ → gói mới hoặc 2 gói tương đương) do Thương mại soạn dựa trên data 1.577 KH kẹt + lịch sử 197 gói cũ, đã duyệt, IT đẩy lên POS. <b>Không cần tạo gói Upgrade riêng</b> — KH tới, NV Supporter in/out đều biết đổi được ngay qua hệ thống.</p></div>
+
+<div class="alert b" style="margin-top:10px"><b>Ý nghĩa cho KH khi đổi gói — NV cần truyền đạt</b>
+<p style="margin-top:4px">Đổi gói = <b>đổi ngang giá trị</b>. KH không mất gì, không thiệt gì. Số buổi còn giữ nguyên, giá trị giảm trừ giữ nguyên, hạn mới 12 tháng. Đây là 30Shine nâng cấp hệ thống để phục vụ anh/chị tốt hơn — không phải KH bị ép đổi.</p></div>
+
+<div style="margin-top:14px"><b style="color:var(--green)">Rule đổi gói — IT + KM + NV cần nắm</b></div>
+<div class="tw" style="margin-top:8px"><table style="font-size:12.5px">
+<tr><th>#</th><th>Rule</th><th>Giải thích (theo cột hệ thống)</th></tr>
+<tr><td><b>1</b></td><td><b>Tổng Giamtru giữ nguyên</b></td><td>Cột <b>Giamtru</b> (đơn giá sau giảm/1 DV) × số buổi còn = tổng giá trị KH được giữ nguyên khi đổi.</td></tr>
+<tr><td><b>2</b></td><td><b>Giá niêm yết DV mới ≥ Giamtru cũ</b></td><td>Cột <b>Giá niêm yết</b> của Id Dịch vụ thay phải ≥ Giamtru cũ — đảm bảo KH nhận giá trị tương đương hoặc hơn.</td></tr>
+<tr><td><b>3</b></td><td><b>Giá DV gốc dùng cho Topup = giá tại thời điểm setup</b></td><td>Cột <b>Giá DV gốc dùng cho Topup</b> = giá setup ban đầu, không phải giá lẻ hiện tại. <b>IT + KM lưu ý.</b></td></tr>
+<tr><td><b>4</b></td><td><b>Công thức tính Giảm trừ mới</b></td><td><span class="kbd">Giảm trừ mới = Giamtru cũ × (Giá niêm yết DV mới / Giá niêm yết DV gốc)</span><br>Ví dụ: Gội Combo 4 (1060), Giamtru = 247,714. Đổi sang DV 891 (Giá niêm yết 100K): Giảm trừ mới = 247,714 × 100K/300K = <b>82,571</b></td></tr>
+<tr><td><b>5</b></td><td><b>Giảm giá mới = Giá niêm yết − Giảm trừ mới</b></td><td>Ví dụ: 100,000 − 82,571 = <b>17,429</b>. Mỗi lượt KH thanh toán = Giảm trừ mới (hệ thống tự tính).</td></tr>
+<tr><td><b>6</b></td><td><b>Có thể đổi sang 1 hoặc 2 Id Dịch vụ thay</b></td><td>Cột <b>Id Dịch vụ thay</b> trên hệ thống. Nếu 1 DV không đủ match → chia thành 2 DV. NV chọn theo gợi ý POS.</td></tr>
+<tr style="background:#ffe8e8"><td><b>7</b></td><td><b>Không được chọn dịch vụ LRT</b></td><td>LRT là sản phẩm, không phải dịch vụ. <b>Campaign Topup không áp dụng cho sản phẩm.</b></td></tr>
+</table></div>
+
+<div class="alert b" style="margin-top:10px;font-size:12px"><b>Ví dụ minh hoạ đổi gói (từ hệ thống):</b>
+<p style="margin-top:4px">KH giữ gói <b>IdSPTopup 5238</b> — "1060 - Gội Combo 4 - Topup 6 lần tặng 1"</p>
+<table style="font-size:11.5px;margin-top:6px;width:100%">
+<tr><th>ServiceId cũ</th><th>Dichvu cũ</th><th>Giamtru/buổi</th><th>Giá DV gốc</th><th>→ Id DV thay</th><th>Giá niêm yết</th><th>Giảm trừ mới</th><th>Giảm giá mới</th></tr>
+<tr><td>1060</td><td>Gội Combo 4</td><td>247,714</td><td>319,000</td><td><b>891</b></td><td>100,000</td><td><b>82,571</b></td><td>17,429</td></tr>
+<tr><td></td><td></td><td></td><td></td><td><b>1001</b></td><td>200,000</td><td><b>165,143</b></td><td>34,857</td></tr>
+<tr><td></td><td></td><td></td><td></td><td><i>(giữ nguyên)</i></td><td>300,000</td><td><b>247,714</b></td><td>52,286</td></tr>
+</table>
+<p style="margin-top:4px;font-size:11px;color:var(--muted)">Hệ thống tự tính — NV không cần nhớ công thức. NV chỉ cần biết: KH đổi sang DV mới, giá trị giữ nguyên.</p>
+</div>
+
+<div style="margin-top:18px"><b style="color:var(--navy)">Bảng đổi gói — IT setup sẵn trên hệ thống, NV tra cứu khi KH đến</b></div>
+<div class="alert b" style="margin-top:6px;font-size:12px"><b>Nguyên tắc:</b> ~150 gói cũ sẽ OFF bán. KH còn giữ gói → đổi sang gói mới. Giá trị giảm trừ giữ nguyên, KH không mất gì. Chia 2 nhóm theo cách xử lý.</div>
+
+<div class="alert b" style="margin-top:12px;font-size:13px"><b>Bảng đổi gói chi tiết:</b> IT đang phối hợp rà soát & setup. Hoàn thiện <b>20/04</b>.
+<p style="margin-top:8px;font-size:14px"><a href="#" style="color:var(--navy);text-decoration:underline;font-weight:700">[Link bảng đổi gói — cập nhật 20/04]</a></p>
+</div>
+
+<div class="alert r" style="margin-top:10px;font-size:12px"><b>Lưu ý:</b> Không on lại DV cũ đã OFF để kết bill. Không chọn dịch vụ LRT (LRT là sản phẩm). Không tự mix gói đổi ngoài bảng.</div>
+</div>
+
+<!-- QUY TRÌNH 2: GIA HẠN -->
+<div class="c" style="border-left:5px solid #c9a227">
+<div class="c-title" style="color:#c9a227">② Quy trình GIA HẠN — lễ tân tick trực tiếp · 1 lần · tối đa 6 tháng</div>
+
+<div class="alert r" style="margin-top:10px"><b>OFF quy trình cũ</b> — bỏ nhắn group chờ duyệt. Từ 17/04: KH tới là gia hạn luôn tại quầy.</div>
+
+<div class="tw" style="margin-top:10px"><table style="font-size:12.5px">
+<tr><th>Rule</th><th>Chi tiết</th></tr>
+<tr><td><b>Điều kiện</b></td><td>KH còn buổi + gói hết hạn (hoặc sắp hết trong 30 ngày)</td></tr>
+<tr><td><b>Gia hạn tối đa 1 lần</b></td><td>Không có lần 2</td></tr>
+<tr><td><b>KH còn hạn > hiện tại</b></td><td>Hạn mới = Ngày hết hạn + 6 tháng</td></tr>
+<tr><td><b>KH hạn ≤ hiện tại</b></td><td>Hạn mới = Ngày hiện tại + 6 tháng</td></tr>
+<tr><td><b>Ai thực hiện</b></td><td>Lễ tân / NV quầy tick trên POS. <b>Không cần ai duyệt.</b></td></tr>
+<tr><td><b>NV tư vấn</b></td><td><i>"Anh/chị được gia hạn 1 lần, nhớ sử dụng hết nha."</i></td></tr>
+</table></div>
+</div>
+
+<!-- HOÀN -->
+<div class="c" style="border-left:5px solid var(--border);background:#fafafa">
+<div class="c-title" style="color:var(--muted)">③ Hoàn tiền — giữ quy trình cũ</div>
+<div class="alert w" style="font-size:12px">
+<b>Công thức:</b> Buổi còn × Giá/buổi Topup gốc. <b>4 bước:</b> SM → GĐKV → Kế toán → Chuyển khoản. SLA ≤ 7 ngày. NV không chủ động đề cập hoàn.
+<p style="margin-top:6px"><b>Form:</b> <a href="https://thirtyshine.sg.larksuite.com/base/Pu1LbRkocaXVNYsbhTylSt0xgZd?table=tblm5XSCJFtszQUi&view=vewwIknWTg" target="_blank" style="color:var(--navy);text-decoration:underline">Mở form trên Lark ↗</a></p>
+</div>
+</div>
+
+<!-- NHƯỢNG QUYỀN -->
+<div class="c" style="border-left:5px solid #e67e22">
+<div class="c-title" style="color:#e67e22">Lưu ý đối với Đối tác Nhượng quyền (NQ)</div>
+<div class="alert w"><b>Mọi NV cũ/mới đều cần nắm — đặc biệt khi KH hỏi "gói topup dùng được ở đâu?"</b>
+<ul style="margin-top:4px">
+<li><b>KH giữ gói Topup → VẪN thanh toán được tại salon NQ</b> bằng gói topup đã mua. Không ảnh hưởng quyền lợi KH.</li>
+<li><b>Salon NQ KHÔNG bán gói Topup mới.</b> Chỉ salon hệ thống (58 salon) mới được bán.</li>
+<li>Nếu KH hỏi: <i>"Dạ anh/chị dùng gói topup tại salon nhượng quyền bình thường ạ. Nếu muốn mua thêm gói mới, anh/chị ghé salon hệ thống gần nhất để em tư vấn nhé."</i></li>
+</ul></div>
+</div>
+
+<!-- TRÁCH NHIỆM -->
+<div class="c">
+<div class="c-title">Trách nhiệm theo vai trò</div>
+<div class="tw"><table>
+<tr><th>Vai trò</th><th>Đổi gói</th><th>Gia hạn</th><th>Nạp thêm</th></tr>
+<tr><td><b>Lễ tân / NV quầy</b></td><td>Tra POS, trình gói đổi theo bảng</td><td><b>Tick gia hạn trực tiếp trên POS</b> (không cần duyệt)</td><td>Pitch tự nhiên sau khi KH hài lòng</td></tr>
+<tr><td><b>SM salon</b></td><td>Bấm "Xác nhận đổi" trên hệ thống</td><td>Follow-up KH 7 ngày / 30 ngày chưa dùng</td><td>Hỗ trợ NV pitch · giám sát target gói/tuần</td></tr>
+<tr><td><b>GĐKV</b></td><td>Ban hành bảng đổi 1–1</td><td>Theo dõi tỷ lệ KH quay lại sau gia hạn</td><td>Can thiệp salon lệch target · duyệt hoàn (dự phòng)</td></tr>
+<tr><td><b>Thương mại (HO)</b></td><td>Soạn bảng đổi dựa trên data</td><td>Thiết kế rule · phân tích KH không quay lại</td><td>Dashboard tổng hợp · điều phối campaign</td></tr>
+<tr><td><b>Phòng CX</b></td><td>Review touchpoint KH lúc đổi</td><td>Wording SMS/notify gia hạn</td><td>Clear hành trình KH Online → Salon · NPS tuần</td></tr>
+<tr><td><b>IT</b></td><td>Push bảng đổi lên POS</td><td>Cấu hình tick gia hạn 1 click · batch push list KH</td><td>Cảnh báo NV khi KH dùng buổi cuối</td></tr>
+</table></div>
+</div>
+
+
+</div>
+
+<!-- ============ S5: MỐC THỜI GIAN ============ -->
+<div class="sec" id="s5">
+<div class="c">
+<div class="c-title">Mốc thời gian chính — chỉ 2 mốc cần nhớ</div>
+
+<div class="alert b"><b>Triển khai 3 mốc:</b> 17/04 ON bán + OFF gói cũ → 20/04 hoàn thiện bảng đổi gói → 01/05 áp HH mới.</div>
+
+<div class="timeline">
+  <div class="tl-item" style="border-color:var(--red)"><div class="dt" style="color:var(--red)">17/04</div><div class="tt">GO-LIVE · ON BÁN</div><p><b>14 gói mới ON bán · gói cũ OFF bán · tinh gọn danh mục.</b> 58 salon triển khai đồng loạt. NV bắt đầu bán gói mới ngay.</p></div>
+
+  <div class="tl-item" style="border-color:var(--orange)"><div class="dt" style="color:var(--orange)">20/04</div><div class="tt">BẢNG ĐỔI GÓI</div><p><b>IT hoàn thiện bảng đổi + update hệ thống.</b> KH còn gói cũ → hệ thống setup sẵn mapping đổi sang gói mới. Gia hạn hoạt động.</p></div>
+
+  <div class="tl-item" style="border-color:#c9a227;background:#FFF8E1"><div class="dt" style="color:#c9a227">01/05</div><div class="tt">HH ÁP MỨC MỚI</div><p>Hệ thống tự đổi HH NV sang <b>30K / 50K / 100K</b>. Giữ ổn định thu nhập NV nửa tháng 4.</p></div>
+</div>
+</div>
+
+<div class="c">
+<div class="c-title">Phối hợp triển khai — thiết kế đã hoàn tất, giờ là thực thi</div>
+<div class="alert g" style="margin-bottom:14px"><b>Toàn bộ thiết kế & phê duyệt đã xong.</b> Khối Salon & CX phối hợp triển khai từ 17/04.</div>
+<div class="grid2">
+  <div class="box" style="border-top:4px solid var(--navy)"><h4 style="color:var(--navy)">SM / GĐKV — Bán & đồng hành</h4>
+    <ul>
+      <li>Hiểu danh mục 14 gói + 9 gói TG · 3 tầng phễu · rule đổi/gia hạn.</li>
+      <li><b>Đồng hành cùng NV:</b> hỗ trợ pitch, xử lý KH khó, chia target tuần.</li>
+      <li>Giám sát dashboard bán hàng ngày · can thiệp sớm khi lệch target.</li>
+      <li>Thúc đẩy tinh thần: Topup = tăng thu nhập NV + giữ KH gắn bó.</li>
+    </ul>
+  </div>
+  <div class="box" style="border-top:4px solid #2a9fd6"><h4 style="color:#2a9fd6">CX & CSKH — Chăm sóc & cập nhật</h4>
+    <ul>
+      <li>Phối hợp triển khai luồng chăm sóc KH: đổi gói, gia hạn, follow-up.</li>
+      <li>Cập nhật toàn bộ nội dung: wording SMS/Zalo/App, form CSKH, FAQ.</li>
+      <li>Clear hành trình KH Online → Salon: thông điệp thống nhất mọi kênh.</li>
+      <li>Theo dõi NPS/phàn nàn sau go-live · báo cáo tuần.</li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
+
+
+<!-- ============ S7: DỰ TÍNH DT ============ -->
+<div class="sec" id="s7">
+<div class="c">
+<div class="c-title">Mục tiêu Topup theo salon — 58 salon toàn hệ thống</div>
+
+<div class="key-facts" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+  <div class="kf"><div class="v" style="color:var(--orange)">2,5 tỷ</div><div class="l">14 ngày 17-30/04</div></div>
+  <div class="kf"><div class="v" style="color:var(--red)">5 tỷ</div><div class="l">Tháng 5</div></div>
+  <div class="kf"><div class="v">7,5 tỷ</div><div class="l">Tổng 45 ngày</div></div>
+  <div class="kf"><div class="v">~7.500</div><div class="l">Gói bán (TB 1tr/gói)</div></div>
+  <div class="kf"><div class="v">58</div><div class="l">Salon tham gia</div></div>
+</div>
+
+<div class="alert b"><b>Logic chia target theo cụm</b>Target mỗi salon = DTT trung bình × hệ số cụm, chuẩn hoá để tổng toàn hệ thống khớp 5 tỷ/tháng. Hệ số: <b>Cụm 1: ×1.3</b> · <b>Cụm 2: ×1.2</b> · <b>Cụm 3: ×1.0</b> · <b>Cụm 4: ×0.6</b>. T4 = 50% T5 vì chỉ 14 ngày go-live. <i>Phân nhóm chi tiết sẽ được cập nhật sau khi có data vận hành giai đoạn đầu.</i></div>
+
+<div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:18px">
+
+  <div class="box" style="border-top:4px solid #2a5290;background:#DEEAF1">
+    <h4 style="color:#2a5290">■ CỤM 1 · 22 salon · hệ số ×1.3</h4>
+    <p style="font-size:12px;margin:6px 0"><b>Target T5: 2,65 tỷ · T4 (14 ngày): 1,32 tỷ</b> — chiếm 53% cả hệ thống.</p>
+  </div>
+
+  <div class="box" style="border-top:4px solid #2d8a4e;background:#E2EFDA">
+    <h4 style="color:#2d8a4e">■ CỤM 2 · 16 salon · hệ số ×1.2</h4>
+    <p style="font-size:12px;margin:6px 0"><b>Target T5: 1,44 tỷ · T4 (14 ngày): 721 triệu</b> — chiếm 29%.</p>
+  </div>
+
+  <div class="box" style="border-top:4px solid #c9a227;background:#FFF2CC">
+    <h4 style="color:#c9a227">■ CỤM 3 · 14 salon · hệ số ×1.0</h4>
+    <p style="font-size:12px;margin:6px 0"><b>Target T5: 699 triệu · T4 (14 ngày): 349 triệu</b> — chiếm 14%.</p>
+  </div>
+
+  <div class="box" style="border-top:4px solid #c0392b;background:#FCE4D6">
+    <h4 style="color:#c0392b">■ CỤM 4 · 6 salon · hệ số ×0.6</h4>
+    <p style="font-size:12px;margin:6px 0"><b>Target T5: 199 triệu · T4 (14 ngày): 99 triệu</b> — chiếm 4%.</p>
+  </div>
+
+</div>
+</div>
+
+<div class="c">
+<div class="c-title">Bảng target chi tiết 58 salon</div>
+<div class="alert w"><b>Cách đọc bảng — cho SM & GĐKV</b>
+<ul style="margin-top:4px">
+<li>Con số đều tính bằng <b>triệu</b>. Ví dụ salon lớn nhất Cụm 1 có Target T5 = 239 triệu ≈ <b>0,24 tỷ/tháng</b>.</li>
+<li>Tổng toàn hệ thống: DTT TB hiện tại <b>24,2 tỷ/tháng</b> · Target T4 (14 ngày) <b>2,5 tỷ</b> · Target T5 (cả tháng) <b>5 tỷ</b> · Ước ~<b>5.000 gói</b> bán ra tháng 5.</li>
+<li>Sắp xếp theo cụm (Cụm 1 → Cụm 4), trong cụm theo DTT giảm dần.</li>
+<li>Cột <b>Gói T5</b> tính trên giá TB ~1 triệu/gói (mix Entry 400K + Core 1,1M + Loyalty 2,2M). SM dùng con số này để chia target theo tuần & theo NV.</li>
+</ul></div>
+<div class="tw"><table>
+<tr><th>Salon</th><th>Tỉnh</th><th>GĐKV</th><th>Cụm</th><th class="n">DTT TB<br>(triệu/tháng)</th><th class="n">Target T4<br>(triệu · 14 ngày)</th><th class="n">Target T5<br>(triệu · 30 ngày)</th><th class="n">Gói T5<br>(ước tính)</th></tr>
+<tr style="background:#DEEAF1"><td><b>103 TN</b></td><td>HCM</td><td>Nguyễn Việt Cường</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">1037</td><td class="n"><b>119</b></td><td class="n"><b>239</b></td><td class="n">239</td></tr>
+<tr style="background:#DEEAF1"><td><b>382 NT</b></td><td>HN</td><td>Đoàn Trung Đức</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">1023</td><td class="n"><b>118</b></td><td class="n"><b>236</b></td><td class="n">236</td></tr>
+<tr style="background:#DEEAF1"><td><b>168 NVC</b></td><td>HN</td><td>Nguyễn Như Quỳnh</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">729</td><td class="n"><b>84</b></td><td class="n"><b>168</b></td><td class="n">168</td></tr>
+<tr style="background:#DEEAF1"><td><b>99 TSN</b></td><td>HCM</td><td>Nguyễn Thanh Sang</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">726</td><td class="n"><b>84</b></td><td class="n"><b>167</b></td><td class="n">167</td></tr>
+<tr style="background:#DEEAF1"><td><b>312 LVS</b></td><td>HCM</td><td>Nguyễn Thanh Sang</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">688</td><td class="n"><b>79</b></td><td class="n"><b>158</b></td><td class="n">158</td></tr>
+<tr style="background:#DEEAF1"><td><b>25 TD</b></td><td>HCM</td><td>Tống Xuân Quyền</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">621</td><td class="n"><b>72</b></td><td class="n"><b>143</b></td><td class="n">143</td></tr>
+<tr style="background:#DEEAF1"><td><b>420 HTP</b></td><td>HCM</td><td>Tống Xuân Quyền</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">593</td><td class="n"><b>68</b></td><td class="n"><b>136</b></td><td class="n">136</td></tr>
+<tr style="background:#DEEAF1"><td><b>186 DTH</b></td><td>HCM</td><td>Tống Xuân Quyền</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">560</td><td class="n"><b>64</b></td><td class="n"><b>129</b></td><td class="n">129</td></tr>
+<tr style="background:#DEEAF1"><td><b>10 TP</b></td><td>HN</td><td>Hoàng Nguyên Hội</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">552</td><td class="n"><b>64</b></td><td class="n"><b>127</b></td><td class="n">127</td></tr>
+<tr style="background:#DEEAF1"><td><b>109 TQH</b></td><td>HN</td><td>Đoàn Trung Đức</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">534</td><td class="n"><b>62</b></td><td class="n"><b>123</b></td><td class="n">123</td></tr>
+<tr style="background:#DEEAF1"><td><b>39 HBT</b></td><td>HN</td><td>Phan Thị Hồng Gấm</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">491</td><td class="n"><b>56</b></td><td class="n"><b>113</b></td><td class="n">113</td></tr>
+<tr style="background:#DEEAF1"><td><b>575 AC</b></td><td>HCM</td><td>Nguyễn Thanh Sang</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">490</td><td class="n"><b>56</b></td><td class="n"><b>113</b></td><td class="n">113</td></tr>
+<tr style="background:#DEEAF1"><td><b>12 LDT</b></td><td>HCM</td><td>Trịnh Văn Quang</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">463</td><td class="n"><b>53</b></td><td class="n"><b>107</b></td><td class="n">107</td></tr>
+<tr style="background:#DEEAF1"><td><b>202 DC</b></td><td>HN</td><td>Phan Thị Hồng Gấm</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">456</td><td class="n"><b>52</b></td><td class="n"><b>105</b></td><td class="n">105</td></tr>
+<tr style="background:#DEEAF1"><td><b>264 LLQ</b></td><td>HN</td><td>Phan Thị Hồng Gấm</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">417</td><td class="n"><b>48</b></td><td class="n"><b>96</b></td><td class="n">96</td></tr>
+<tr style="background:#DEEAF1"><td><b>483 TN</b></td><td>HCM</td><td>Trịnh Văn Quang</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">416</td><td class="n"><b>48</b></td><td class="n"><b>96</b></td><td class="n">96</td></tr>
+<tr style="background:#DEEAF1"><td><b>80 PL BD</b></td><td>Binh Duong</td><td>Nguyễn Việt Cường</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">402</td><td class="n"><b>46</b></td><td class="n"><b>93</b></td><td class="n">93</td></tr>
+<tr style="background:#DEEAF1"><td><b>346 KT</b></td><td>HN</td><td>Phan Thị Hồng Gấm</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">347</td><td class="n"><b>40</b></td><td class="n"><b>80</b></td><td class="n">80</td></tr>
+<tr style="background:#DEEAF1"><td><b>1146 KVC</b></td><td>HCM</td><td>Nguyễn Việt Cường</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">278</td><td class="n"><b>32</b></td><td class="n"><b>64</b></td><td class="n">64</td></tr>
+<tr style="background:#DEEAF1"><td><b>58 NVC NA</b></td><td>Nghe An</td><td>Nguyễn Thị Huệ</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">258</td><td class="n"><b>30</b></td><td class="n"><b>59</b></td><td class="n">59</td></tr>
+<tr style="background:#DEEAF1"><td><b>68 LN NA</b></td><td>Nghe An</td><td>Nguyễn Thị Huệ</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">216</td><td class="n"><b>25</b></td><td class="n"><b>50</b></td><td class="n">50</td></tr>
+<tr style="background:#DEEAF1"><td><b>7 DTP LA</b></td><td>Long An</td><td>Tống Xuân Quyền</td><td><b style="color:#2a5290">Cụm 1</b></td><td class="n">206</td><td class="n"><b>24</b></td><td class="n"><b>48</b></td><td class="n">48</td></tr>
+<tr style="background:#E2EFDA"><td><b>927 HG</b></td><td>HCM</td><td>Nguyễn Thanh Sang</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">844</td><td class="n"><b>90</b></td><td class="n"><b>179</b></td><td class="n">179</td></tr>
+<tr style="background:#E2EFDA"><td><b>237 NTT</b></td><td>HCM</td><td>Tống Xuân Quyền</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">758</td><td class="n"><b>80</b></td><td class="n"><b>161</b></td><td class="n">161</td></tr>
+<tr style="background:#E2EFDA"><td><b>116 TK</b></td><td>HN</td><td>Đoàn Trung Đức</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">716</td><td class="n"><b>76</b></td><td class="n"><b>152</b></td><td class="n">152</td></tr>
+<tr style="background:#E2EFDA"><td><b>145 THT</b></td><td>HCM</td><td>Nguyễn Thanh Sang</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">688</td><td class="n"><b>73</b></td><td class="n"><b>146</b></td><td class="n">146</td></tr>
+<tr style="background:#E2EFDA"><td><b>50BT4 NPC LD</b></td><td>HN</td><td>Phan Thị Hồng Gấm</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">566</td><td class="n"><b>60</b></td><td class="n"><b>120</b></td><td class="n">120</td></tr>
+<tr style="background:#E2EFDA"><td><b>730 TL10</b></td><td>HCM</td><td>Nguyễn Thanh Sang</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">503</td><td class="n"><b>54</b></td><td class="n"><b>107</b></td><td class="n">107</td></tr>
+<tr style="background:#E2EFDA"><td><b>190 HB</b></td><td>HCM</td><td>Nguyễn Thanh Sang</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">380</td><td class="n"><b>40</b></td><td class="n"><b>81</b></td><td class="n">81</td></tr>
+<tr style="background:#E2EFDA"><td><b>1180 QT</b></td><td>HCM</td><td>Trịnh Văn Quang</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">371</td><td class="n"><b>40</b></td><td class="n"><b>79</b></td><td class="n">79</td></tr>
+<tr style="background:#E2EFDA"><td><b>55A NVL</b></td><td>HN</td><td>Đoàn Trung Đức</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">358</td><td class="n"><b>38</b></td><td class="n"><b>76</b></td><td class="n">76</td></tr>
+<tr style="background:#E2EFDA"><td><b>36 N1 BD</b></td><td>Binh Duong</td><td>Nguyễn Việt Cường</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">279</td><td class="n"><b>30</b></td><td class="n"><b>59</b></td><td class="n">59</td></tr>
+<tr style="background:#E2EFDA"><td><b>76 PVH</b></td><td>HCM</td><td>Trịnh Văn Quang</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">275</td><td class="n"><b>29</b></td><td class="n"><b>58</b></td><td class="n">58</td></tr>
+<tr style="background:#E2EFDA"><td><b>80 TP TH</b></td><td>Thanh Hoa</td><td>Nguyễn Thị Huệ</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">246</td><td class="n"><b>26</b></td><td class="n"><b>52</b></td><td class="n">52</td></tr>
+<tr style="background:#E2EFDA"><td><b>11 PKT</b></td><td>HN</td><td>Hoàng Nguyên Hội</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">231</td><td class="n"><b>25</b></td><td class="n"><b>49</b></td><td class="n">49</td></tr>
+<tr style="background:#E2EFDA"><td><b>595 BT TH</b></td><td>Thanh Hoa</td><td>Nguyễn Thị Huệ</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">201</td><td class="n"><b>21</b></td><td class="n"><b>43</b></td><td class="n">43</td></tr>
+<tr style="background:#E2EFDA"><td><b>304 NT TH</b></td><td>Thanh Hoa</td><td>Nguyễn Thị Huệ</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">188</td><td class="n"><b>20</b></td><td class="n"><b>40</b></td><td class="n">40</td></tr>
+<tr style="background:#E2EFDA"><td><b>290 QT TH</b></td><td>Thanh Hoa</td><td>Nguyễn Thị Huệ</td><td><b style="color:#2d8a4e">Cụm 2</b></td><td class="n">184</td><td class="n"><b>20</b></td><td class="n"><b>39</b></td><td class="n">39</td></tr>
+<tr style="background:#FFF2CC"><td><b>8 CVL</b></td><td>HCM</td><td>Nguyễn Thanh Sang</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">575</td><td class="n"><b>51</b></td><td class="n"><b>102</b></td><td class="n">102</td></tr>
+<tr style="background:#FFF2CC"><td><b>255 NAN</b></td><td>Binh Duong</td><td>Nguyễn Việt Cường</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">418</td><td class="n"><b>37</b></td><td class="n"><b>74</b></td><td class="n">74</td></tr>
+<tr style="background:#FFF2CC"><td><b>173 TN</b></td><td>HN</td><td>Phan Thị Hồng Gấm</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">354</td><td class="n"><b>31</b></td><td class="n"><b>63</b></td><td class="n">63</td></tr>
+<tr style="background:#FFF2CC"><td><b>151 CG</b></td><td>HN</td><td>Đoàn Trung Đức</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">319</td><td class="n"><b>28</b></td><td class="n"><b>56</b></td><td class="n">56</td></tr>
+<tr style="background:#FFF2CC"><td><b>363 LNQ TN</b></td><td>Thai Nguyen</td><td>Phan Thị Hồng Gấm</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">279</td><td class="n"><b>25</b></td><td class="n"><b>49</b></td><td class="n">49</td></tr>
+<tr style="background:#FFF2CC"><td><b>708 LTT</b></td><td>HCM</td><td>Nguyễn Thanh Sang</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">276</td><td class="n"><b>24</b></td><td class="n"><b>49</b></td><td class="n">49</td></tr>
+<tr style="background:#FFF2CC"><td><b>1371 PVT</b></td><td>Dong Nai</td><td>Nguyễn Việt Cường</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">244</td><td class="n"><b>22</b></td><td class="n"><b>43</b></td><td class="n">43</td></tr>
+<tr style="background:#FFF2CC"><td><b>32 NAT</b></td><td>HCM</td><td>Trịnh Văn Quang</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">241</td><td class="n"><b>21</b></td><td class="n"><b>43</b></td><td class="n">43</td></tr>
+<tr style="background:#FFF2CC"><td><b>401/1 NDT</b></td><td>HCM</td><td>Nguyễn Việt Cường</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">237</td><td class="n"><b>21</b></td><td class="n"><b>42</b></td><td class="n">42</td></tr>
+<tr style="background:#FFF2CC"><td><b>341 XVNT</b></td><td>HCM</td><td>Tống Xuân Quyền</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">236</td><td class="n"><b>21</b></td><td class="n"><b>42</b></td><td class="n">42</td></tr>
+<tr style="background:#FFF2CC"><td><b>62 LH</b></td><td>HN</td><td>Đoàn Trung Đức</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">220</td><td class="n"><b>19</b></td><td class="n"><b>39</b></td><td class="n">39</td></tr>
+<tr style="background:#FFF2CC"><td><b>65 CD</b></td><td>HN</td><td>Đoàn Trung Đức</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">214</td><td class="n"><b>19</b></td><td class="n"><b>38</b></td><td class="n">38</td></tr>
+<tr style="background:#FFF2CC"><td><b>148 TD</b></td><td>HN</td><td>Phan Thị Hồng Gấm</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">191</td><td class="n"><b>17</b></td><td class="n"><b>34</b></td><td class="n">34</td></tr>
+<tr style="background:#FFF2CC"><td><b>186 QT</b></td><td>HN</td><td>Hoàng Nguyên Hội</td><td><b style="color:#c9a227">Cụm 3</b></td><td class="n">141</td><td class="n"><b>12</b></td><td class="n"><b>25</b></td><td class="n">25</td></tr>
+<tr style="background:#FCE4D6"><td><b>29 HB</b></td><td>HCM</td><td>Nguyễn Việt Cường</td><td><b style="color:#c0392b">Cụm 4</b></td><td class="n">464</td><td class="n"><b>25</b></td><td class="n"><b>49</b></td><td class="n">49</td></tr>
+<tr style="background:#FCE4D6"><td><b>236 DBT</b></td><td>HCM</td><td>Tống Xuân Quyền</td><td><b style="color:#c0392b">Cụm 4</b></td><td class="n">461</td><td class="n"><b>24</b></td><td class="n"><b>49</b></td><td class="n">49</td></tr>
+<tr style="background:#FCE4D6"><td><b>90 NH</b></td><td>HN</td><td>Đoàn Trung Đức</td><td><b style="color:#c0392b">Cụm 4</b></td><td class="n">370</td><td class="n"><b>20</b></td><td class="n"><b>39</b></td><td class="n">39</td></tr>
+<tr style="background:#FCE4D6"><td><b>113 THD AG</b></td><td>An Giang</td><td>Tống Xuân Quyền</td><td><b style="color:#c0392b">Cụm 4</b></td><td class="n">225</td><td class="n"><b>12</b></td><td class="n"><b>24</b></td><td class="n">24</td></tr>
+<tr style="background:#FCE4D6"><td><b>451 PVT</b></td><td>Dong Nai</td><td>Nguyễn Việt Cường</td><td><b style="color:#c0392b">Cụm 4</b></td><td class="n">215</td><td class="n"><b>11</b></td><td class="n"><b>23</b></td><td class="n">23</td></tr>
+<tr style="background:#FCE4D6"><td><b>4 LQD BN</b></td><td>Bac Ninh</td><td>Nguyễn Như Quỳnh</td><td><b style="color:#c0392b">Cụm 4</b></td><td class="n">137</td><td class="n"><b>7</b></td><td class="n"><b>14</b></td><td class="n">14</td></tr>
+
+<tr style="background:var(--navy);color:#fff;font-weight:800"><td colspan="4" style="color:#fff">TỔNG 58 SALON</td><td class="n">24,1 tỷ</td><td class="n">2,5 tỷ</td><td class="n">5 tỷ</td><td class="n">~5.000 gói</td></tr>
+</table></div>
+</div>
+
+<div class="c">
+<div class="c-title">Mỗi vai trò đóng góp thế nào?</div>
+<div class="grid2">
+  <div class="box"><h4>NV quầy</h4><p style="font-size:12px">Nhận target tuần từ SM = Target salon ÷ 4 tuần ÷ số NV. Ví dụ salon 100tr/tháng × 8 NV = ~3,1tr/NV/tuần ≈ 3 gói Core/NV/tuần. Focus pitch đúng phễu F1-F4.</p></div>
+  <div class="box"><h4>SM salon</h4><p style="font-size:12px">Chia target NV · giám sát tỉ lệ 3 tầng Entry/Core/Loyalty · check hàng ngày số gói bán trên dashboard · hỗ trợ NV xử lý KH khó.</p></div>
+  <div class="box"><h4>GĐKV</h4><p style="font-size:12px">Chốt target cho từng salon trong cụm theo năng lực thực tế (có thể lệch ±20% so bảng này). Theo dõi % đạt tuần · can thiệp khi salon lệch &gt; 2 tuần liên tiếp. Họp chéo cụm mỗi 2 tuần.</p></div>
+  <div class="box"><h4>Khối Thương mại</h4><p style="font-size:12px">Dashboard tổng hợp theo ngày · điều phối campaign hỗ trợ các cụm · theo dõi chất lượng DV toàn hệ thống.</p></div>
+</div>
+</div>
+</div>
+
+<!-- ============ S6: FAQ ============ -->
+<div class="sec" id="s6">
+<div class="c">
+<div class="c-title">Script trả lời KH — 5 tình huống chính</div>
+
+<details class="faq" open><summary>1. KH hỏi "Gói cũ của tôi giờ dùng sao?"</summary>
+<div class="faq-body">
+"Anh/chị <b>vẫn dùng hết số buổi còn lại bình thường</b>, không bị khoá gì cả. Từ 17/04 bên em ngừng bán các gói cũ, nhưng buổi còn trong gói của anh/chị vẫn nguyên vẹn. Nếu gói cũ có dịch vụ hệ thống đã bỏ thì em sẽ tra bảng đổi sang gói mới tương đương giúp anh/chị nhé."
+</div></details>
+
+<details class="faq"><summary>2. KH yêu cầu hoàn tiền</summary>
+<div class="faq-body">
+"Em ghi nhận yêu cầu của anh/chị. Em sẽ chuyển cho quản lý khởi tạo ticket hoàn trên hệ thống. Số tiền hoàn sẽ bằng <b>số buổi còn × giá/buổi của gói anh/chị mua</b>, hệ thống tự tính. <b>Thời gian xử lý tối đa 7 ngày làm việc</b>, anh/chị sẽ nhận SMS cập nhật từng bước ạ."
+<div class="alert w" style="margin-top:8px;font-size:12px"><b>Lưu ý NV:</b> KHÔNG đọc số tiền cụ thể — để hệ thống hiển thị chính thức. KHÔNG hứa thời gian ngắn hơn 7 ngày.</div>
+</div></details>
+
+<details class="faq"><summary>3. KH muốn đổi sang gói mới</summary>
+<div class="faq-body">
+"Anh/chị chờ em check bảng đổi đã được Giám đốc khối duyệt nhé. Nếu gói của anh/chị có trong bảng, em làm đổi tại chỗ luôn. Nếu chưa có phương án đổi phù hợp, em đề xuất hoàn theo chính sách 7 ngày."
+<div class="alert w" style="margin-top:8px;font-size:12px"><b>Lưu ý NV:</b> KHÔNG tự mix gói đổi ngoài bảng GĐKV đã duyệt.</div>
+</div></details>
+
+<details class="faq"><summary>4. KH phàn nàn giá gói mới</summary>
+<div class="faq-body">
+"Dạ em hiểu ạ. Danh mục mới bên em có <b>3 tầng để anh/chị dễ chọn</b>: gói 3 buổi dùng thử, gói 6+1 tiêu chuẩn, và gói 10+2 cho khách quen. Hạn 12 tháng, giá/buổi đã tính sẵn rõ ràng. Anh/chị thường dùng combo nào thì em tư vấn gói phù hợp nhất nhé?"
+</div></details>
+
+<details class="faq"><summary>5. KH hỏi "Gói 10+2 so với mua lẻ lợi bao nhiêu?"</summary>
+<div class="faq-body">
+"Gói 10+2 nghĩa là <b>mua 10 tặng 2 — tổng 12 buổi</b>, hạn 12 tháng. So với mua lẻ từng lần, giá/buổi giảm đáng kể (hệ thống hiển thị giá/buổi cụ thể cho anh/chị xem). Phù hợp với anh/chị đi đều đặn hàng tháng ạ."
+</div></details>
+</div>
+
+<div class="c">
+<div class="c-title">FAQ nội bộ — NV/SM hay hỏi</div>
+
+<details class="faq"><summary>Tôi có được đổi HH thủ công sau 01/05 không?</summary>
+<div class="faq-body"><b>Không.</b> Hệ thống tự động áp mức mới lúc 00:00 ngày 01/05. SM/NV không thao tác gì.</div></details>
+
+<details class="faq"><summary>Nếu POS vẫn hiển thị gói cũ sau 17/04 thì sao?</summary>
+<div class="faq-body">Báo ngay cho SM → SM báo HO. <b>Tuyệt đối không bán gói cũ</b> dù POS còn hiện.</div></details>
+
+<details class="faq"><summary>Có được on lại DV cũ để kết bill cho KH không?</summary>
+<div class="faq-body"><b>Không.</b> Hệ thống chặn cấp salon/SM. Chỉ HO mở được khi có approve. Vi phạm = sai quy định danh mục.</div></details>
+
+<details class="faq"><summary>Ticket hoàn quá 7 ngày chưa xong, xử lý thế nào?</summary>
+<div class="faq-body">Hệ thống tự notify cấp trên. SM/GĐKV check dashboard ticket đang treo để xử lý đúng hạn.</div></details>
+
+<details class="faq"><summary>KH hỏi gói mới khác gói cũ chỗ nào?</summary>
+<div class="faq-body">3 điểm chính: (1) <b>14 gói chuẩn</b> thay vì 197 gói rối; (2) <b>Hạn 12 tháng</b> — gói cũ vô thời hạn; (3) Giá/buổi rõ ràng theo từng tầng.</div></details>
+</div>
+</div>
+
+</div>
+
+<script>
+function go(id){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
