@@ -166,13 +166,12 @@ KH nam 30Shine không muốn bị thấy keo kiệt. Mua topup = <b>chi tiêu th
 </div>
 
 <div class="alert r" style="margin:14px 0"><b>HƯỚNG DẪN CHO IT + VẬN HÀNH — tái sử dụng mã cũ, không tạo mới</b>
-<p style="margin-top:6px">14 gói mới (tiêu chuẩn) + 8 gói thương gia được map sang <b>IdSPTopup + IdCampTopup đã có trên hệ thống</b> (dữ liệu gốc "Topup 20/03/2026"). IT <b>CHỈ cần 3 thao tác</b>:</p>
+<p style="margin-top:6px">14 gói tiêu chuẩn + 9 gói thương gia — tái sử dụng <b>IdSPTopup + IdCampTopup đã có trên hệ thống</b>. IT chỉ cần <b>2 thao tác</b>:</p>
 <ol style="margin-top:4px;padding-left:24px">
-<li>Update <b>giá Topup</b> theo cột "Giá Topup MỚI" (cột in đậm).</li>
-<li>Update <b>HSD về 365 ngày = 12 tháng</b> cho tất cả 22 gói (gói cũ có HSD 180 / 445 / 456 / 480 ngày — cần đồng bộ về 365).</li>
-<li>Chỉ <b>tạo mới 2 mã</b>: <b>E1-TG</b> (Combo 1 First Class 1 · 3 buổi · ID DV 1052) và <b>C-TG FC3</b> (Combo First Class 3 · 10+2 · ID DV 1054 · IdSPTopup 5324) — hiện chưa có trên hệ thống.</li>
+<li>Update <b>HSD về 365 ngày = 12 tháng</b> cho tất cả gói (gói cũ có HSD 180 / 445 / 456 / 480 ngày — cần đồng bộ về 365). <b>Giá giữ nguyên</b> theo hệ thống hiện tại.</li>
+<li>Chỉ <b>tạo mới 1 mã duy nhất</b>: <b>E1-TG</b> (Combo 1 First Class 1 · 3 buổi · ID DV 1052 · giá 380.000đ) — hiện chưa có trên hệ thống.</li>
 </ol>
-<p style="margin-top:6px">Không đổi IdSPTopup · không đổi IdCampTopup · không đổi tên → NV/SM vẫn tra cứu theo code quen thuộc, IT xử lý cực nhanh.</p></div>
+<p style="margin-top:6px">Không đổi giá · không đổi IdSPTopup · không đổi tên → IT xử lý nhanh, NV/SM tra cứu theo code quen thuộc.</p></div>
 
 <div class="alert b" style="font-size:12px;margin:10px 0"><b>Cách đọc bảng (cho SM · NV · GĐKV · IT)</b>
 <ul style="margin-top:4px">
@@ -180,7 +179,7 @@ KH nam 30Shine không muốn bị thấy keo kiệt. Mua topup = <b>chi tiêu th
 <li><b>ID DV</b> = ID dịch vụ (NV tra POS theo ID này khi thực hiện buổi).</li>
 <li><b>Tên DV</b> = tên dịch vụ gốc trên hệ thống — NV dùng để pitch: "Topup ShineCombo mua 6 tặng 1…".</li>
 <li><b>Giá cũ</b> (chữ xám) = giá Topup đang có trên hệ thống — chỉ để IT đối chiếu.</li>
-<li><b>Giá Topup MỚI</b> = giá chính thức áp dụng từ 17/04 (IT update vào mã cũ).</li>
+<li><b>Giá Topup</b> = giá hiện tại trên hệ thống, giữ nguyên.</li>
 <li><b>HSD</b> = chuẩn hoá 365 ngày cho toàn bộ 22 gói.</li>
 <li><b>CK %</b> = % giảm giá/buổi so giá lẻ → con số ngắn gọn NV pitch KH.</li>
 <li><b>Tổng lợi</b> = số tiền KH tiết kiệm cho cả gói → con số "ăn tiền" khi chốt.</li>
