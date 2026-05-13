@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30Shine Tri Ân T5/2026 — Phương án trình Ban Giám đốc</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Helvetica Neue',Arial,sans-serif}
+  body{background:#070b1e;padding:24px 12px;min-height:100vh;color:#fff;line-height:1.5}
+  .doc{max-width:1080px;margin:0 auto}
+
+  /* SHARED SECTION CARD */
+  .sec{background:linear-gradient(135deg,#0f1a3a 0%,#1a2855 50%,#0f1a3a 100%);border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);border:1px solid rgba(212,175,55,.2);margin-bottom:24px;position:relative}
+  .sec::before{content:"";position:absolute;top:-30%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(212,175,55,.1) 0%,transparent 70%);pointer-events:none}
+  .orn{height:6px;background:linear-gradient(90deg,transparent,#d4af37 30%,#f4d670 50%,#d4af37 70%,transparent)}
+
+  /* HERO */
+  .hero{padding:60px 40px 40px;text-align:center;position:relative;z-index:2}
+  .brand{font-size:13px;letter-spacing:8px;color:#d4af37;font-weight:600;margin-bottom:10px}
+  .brand::before,.brand::after{content:"◆";margin:0 14px;color:#d4af37;font-size:10px}
+  .triân{font-size:140px;font-weight:900;color:#d4af37;line-height:.92;letter-spacing:-3px;text-shadow:0 8px 60px rgba(212,175,55,.5);font-family:'Playfair Display','Times New Roman',serif;font-style:italic}
+  .triân-sub{font-size:16px;color:#a8b2d1;letter-spacing:6px;font-weight:500;margin-top:8px}
+  .gold-line{width:140px;height:2px;background:linear-gradient(90deg,transparent,#d4af37,transparent);margin:28px auto}
+
+  /* TAGLINE STORY */
+  .tagline{padding:14px 40px 36px;text-align:center;position:relative;z-index:2}
+  .tg-main{font-size:24px;color:#fff;font-weight:300;line-height:1.6;font-style:italic;max-width:760px;margin:0 auto}
+  .tg-main b{color:#d4af37;font-style:normal;font-weight:600}
+  .pillars{display:flex;justify-content:center;gap:50px;margin-top:36px;flex-wrap:wrap}
+  .pillar{text-align:center;max-width:170px}
+  .pillar .ic-bd{display:inline-flex;width:80px;height:80px;background:rgba(212,175,55,.1);border:2px solid rgba(212,175,55,.4);border-radius:50%;align-items:center;justify-content:center;font-size:36px}
+  .pillar .lb{font-size:14px;color:#d4af37;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-top:12px}
+  .pillar .dt{font-size:12px;color:#a8b2d1;margin-top:6px;line-height:1.4}
+
+  /* SECTION HEAD */
+  .sh{padding:30px 40px 14px;position:relative;z-index:2}
+  .sh-tag{display:inline-block;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.4);color:#d4af37;padding:5px 14px;border-radius:20px;font-size:11px;letter-spacing:3px;font-weight:800;margin-bottom:12px}
+  .sh h2{font-size:34px;color:#fff;font-weight:900;line-height:1.1;letter-spacing:-1px}
+  .sh h2 b{color:#d4af37;font-style:italic;font-family:'Playfair Display','Times New Roman',serif}
+  .sh .sub{font-size:14px;color:#a8b2d1;margin-top:6px;font-style:italic}
+
+  /* GOALS GRID */
+  .goals{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding:6px 40px 30px;position:relative;z-index:2}
+  .goal{background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.3);border-radius:12px;padding:18px 14px;text-align:center}
+  .goal .ic{font-size:30px;line-height:1}
+  .goal .v{font-size:20px;font-weight:900;color:#d4af37;margin-top:6px}
+  .goal .l{font-size:11px;color:#a8b2d1;margin-top:4px;line-height:1.3;letter-spacing:.5px}
+
+  /* GIFT BANNER */
+  .gift-banner{margin:8px 40px 30px;background:linear-gradient(135deg,#d4af37 0%,#f4d670 50%,#d4af37 100%);padding:2px;border-radius:14px;position:relative;z-index:2}
+  .gift-banner-inner{background:#0f1a3a;padding:20px 28px;border-radius:12px;text-align:center}
+  .gift-banner-inner .tt{font-size:11px;color:#d4af37;font-weight:800;letter-spacing:3px}
+  .gift-banner-inner .vl{font-size:22px;color:#fff;font-weight:700;margin-top:6px}
+  .gift-banner-inner .vl b{color:#d4af37}
+
+  /* CT BLOCK */
+  .ct{padding:14px 40px 30px;position:relative;z-index:2}
+  .ct-no{display:inline-flex;width:48px;height:48px;background:#d4af37;color:#0f1a3a;border-radius:50%;align-items:center;justify-content:center;font-weight:900;font-size:22px;box-shadow:0 6px 20px rgba(212,175,55,.4);margin-bottom:14px}
+  .ct h3{font-size:28px;color:#fff;font-weight:900;letter-spacing:-.5px;line-height:1.1}
+  .ct h3 b{color:#d4af37;font-style:italic;font-family:'Playfair Display','Times New Roman',serif}
+  .ct .ctx{font-size:13px;color:#a8b2d1;margin-top:8px;margin-bottom:20px;font-style:italic;line-height:1.5}
+  .ct .ctx b{color:#fff;font-style:normal;font-weight:600}
+
+  /* TIER cards */
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+  .tier{background:rgba(255,255,255,.04);border-radius:16px;padding:22px;border:1px solid rgba(212,175,55,.25);position:relative;overflow:hidden}
+  .tier.t3{background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.55)}
+  .t-no{position:absolute;top:-10px;right:18px;background:#d4af37;color:#0f1a3a;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;box-shadow:0 6px 14px rgba(212,175,55,.4)}
+  .tier h4{font-size:11px;letter-spacing:2.5px;color:#d4af37;font-weight:700;text-transform:uppercase}
+  .tier .bill{font-size:36px;color:#fff;font-weight:900;line-height:1;margin-top:6px;letter-spacing:-1px}
+  .tier .bill .vnd{color:#d4af37;font-size:42px}
+  .tier .ctx2{font-size:11px;color:#a8b2d1;margin-top:6px;margin-bottom:14px;font-style:italic}
+
+  .gift{background:linear-gradient(135deg,#fff 0%,#f5f5f5 100%);border-radius:12px;padding:16px;color:#0f1a3a;text-align:center;position:relative;margin-bottom:14px;border:2px solid #d4af37}
+  .gift::before{content:"🎁";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#d4af37;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 4px 12px rgba(212,175,55,.5)}
+  .gift .em{font-size:42px;line-height:1;margin:6px 0}
+  .gift .nm{font-size:13px;font-weight:800;color:#0f1a3a;line-height:1.3}
+  .gift .val{font-size:11px;color:#888;margin-top:4px}
+  .gift .val b{color:#d4af37;font-size:13px}
+
+  .combos{display:flex;flex-direction:column;gap:7px}
+  .combo{background:rgba(255,255,255,.05);padding:9px 12px;border-radius:9px;border-left:3px solid #d4af37}
+  .combo-nm{font-size:12px;color:#fff;font-weight:700}
+  .combo-dt{font-size:10.5px;color:#a8b2d1;margin-top:2px}
+  .combo-pr{font-size:12.5px;color:#d4af37;font-weight:900;float:right;margin-top:-20px}
+
+  /* TABLE */
+  .tbl{background:rgba(255,255,255,.03);border-radius:12px;overflow:auto;border:1px solid rgba(212,175,55,.15);margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:11.5px;min-width:660px}
+  thead th{background:rgba(212,175,55,.15);color:#d4af37;padding:10px 7px;text-align:center;font-weight:800;letter-spacing:.5px;font-size:10.5px;text-transform:uppercase;border-bottom:1px solid rgba(212,175,55,.3)}
+  thead th:first-child,thead th:nth-child(2),thead th:nth-child(3){text-align:left;padding-left:12px}
+  tbody td{padding:9px 7px;text-align:right;color:#fff;border-bottom:1px solid rgba(255,255,255,.05);font-weight:500}
+  tbody td:nth-child(1),tbody td:nth-child(2),tbody td:nth-child(3){text-align:left;padding-left:12px}
+  tbody td:nth-child(1){color:#d4af37;font-weight:800}
+  tbody tr:last-child td{border-bottom:none}
+  .lai{color:#d4af37 !important;font-weight:900 !important}
+  .mg{font-weight:800 !important;color:#4ade80 !important}
+
+  /* SUM CARD */
+  .sumc{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:6px 40px 28px;position:relative;z-index:2}
+  .sumc-it{background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.35);border-radius:12px;padding:16px;text-align:center}
+  .sumc-it .v{font-size:24px;font-weight:900;color:#d4af37;line-height:1}
+  .sumc-it .l{font-size:10.5px;color:#a8b2d1;margin-top:6px;letter-spacing:1px;text-transform:uppercase}
+
+  /* COMPARE 2 CT */
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 40px 30px;position:relative;z-index:2}
+  .cmp-c{background:rgba(255,255,255,.04);border-radius:14px;padding:20px;border:1px solid rgba(212,175,55,.2)}
+  .cmp-c h5{font-size:13px;color:#d4af37;letter-spacing:2px;font-weight:800;margin-bottom:10px}
+  .cmp-c p{font-size:12px;color:#a8b2d1;line-height:1.7}
+  .cmp-c p b{color:#fff;font-weight:600}
+
+  /* FOOTER */
+  .ft{background:rgba(0,0,0,.4);padding:26px 40px;text-align:center;position:relative;z-index:2;border-top:1px solid rgba(212,175,55,.25)}
+  .ft-tag{font-size:15px;color:#d4af37;font-style:italic;font-weight:500;margin-bottom:14px;letter-spacing:1px}
+  .ft-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;color:#a8b2d1;font-size:11.5px}
+  .ft-row .pill{background:rgba(212,175,55,.1);padding:5px 14px;border-radius:20px;border:1px solid rgba(212,175,55,.3)}
+  .ft-row .pill b{color:#d4af37}
+  .note{margin-top:14px;font-size:10.5px;color:#7080a0;line-height:1.6}
+  .logo{font-size:14px;color:#fff;font-weight:900;letter-spacing:3px;margin-top:14px;opacity:.7}
+  .logo span{color:#d4af37}
+
+  /* DECISION BAR */
+  .dec{background:linear-gradient(135deg,#1a2855 0%,#0f1a3a 100%);border-radius:18px;padding:32px 36px;margin-bottom:24px;border:2px solid #d4af37;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .dec .lb{font-size:11px;color:#d4af37;letter-spacing:4px;font-weight:800;margin-bottom:8px}
+  .dec h3{font-size:26px;color:#fff;font-weight:900;line-height:1.2}
+  .dec h3 b{color:#d4af37;font-style:italic;font-family:'Playfair Display','Times New Roman',serif}
+  .dec-row{display:flex;justify-content:center;gap:24px;margin-top:20px;flex-wrap:wrap}
+  .dec-pill{background:rgba(212,175,55,.15);padding:8px 18px;border-radius:24px;border:1px solid rgba(212,175,55,.4);color:#fff;font-size:13px;font-weight:600}
+  .dec-pill b{color:#d4af37}
+
+  @media(max-width:768px){
+    .triân{font-size:80px}
+    .tg-main{font-size:17px}
+    .pillars{gap:24px}
+    .goals{grid-template-columns:repeat(2,1fr)}
+    .tiers{grid-template-columns:1fr}
+    .sumc{grid-template-columns:repeat(2,1fr)}
+    .cmp{grid-template-columns:1fr}
+    .sh h2,.ct h3{font-size:22px}
+    .tier .bill{font-size:28px}
+    .gift-banner,.cmp{padding-left:14px;padding-right:14px}
+    body{padding:14px 8px}
+    .hero,.sh,.ct,.ft,.tagline{padding-left:20px;padding-right:20px}
+    .sumc{padding-left:20px;padding-right:20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+<!-- ============================================================== -->
+<!-- SECTION 1: HERO TRI ÂN + MỤC TIÊU CHIẾN DỊCH -->
+<!-- ============================================================== -->
+<div class="sec">
+  <div class="orn"></div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="brand">30 SHINE PRESENTS</div>
+    <h1 class="triân">Tri Ân</h1>
+    <div class="triân-sub">THÁNG 5/2026</div>
+    <div class="gold-line"></div>
+  </div>
+
+  <!-- TAGLINE -->
+  <div class="tagline">
+    <p class="tg-main">
+      Gửi đến những <b>người đàn ông trụ cột</b><br>
+      vừa lo sự nghiệp · vừa chăm sóc bản thân<br>
+      vừa là <b>điểm tựa của những người thân yêu</b>
+    </p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="ic-bd">💼</div>
+        <div class="lb">Sự nghiệp</div>
+        <div class="dt">Bận rộn — vẫn quyết đoán</div>
+      </div>
+      <div class="pillar">
+        <div class="ic-bd">✂️</div>
+        <div class="lb">Bản thân</div>
+        <div class="dt">Chỉn chu — tự tin mỗi ngày</div>
+      </div>
+      <div class="pillar">
+        <div class="ic-bd">👨‍👩‍👧</div>
+        <div class="lb">Gia đình</div>
+        <div class="dt">Là chỗ dựa — của người thân</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MỤC TIÊU CHIẾN DỊCH -->
+  <div class="sh">
+    <span class="sh-tag">★ MỤC TIÊU CHIẾN DỊCH ★</span>
+    <h2>5 mục tiêu <b>then chốt</b> tháng 5</h2>
+    <p class="sub">Định hướng để Ban Giám đốc thấy được giá trị toàn diện của chiến dịch</p>
+  </div>
+
+  <div class="goals">
+    <div class="goal">
+      <div class="ic">💰</div>
+      <div class="v">4,2 tỷ</div>
+      <div class="l">Doanh thu Topup T5</div>
+    </div>
+    <div class="goal">
+      <div class="ic">⚡</div>
+      <div class="v">Tối đa</div>
+      <div class="l">Dòng vốn (cash in trước)</div>
+    </div>
+    <div class="goal">
+      <div class="ic">🎁</div>
+      <div class="v">Hời</div>
+      <div class="l">Quà tận tồn — KH siêu thích</div>
+    </div>
+    <div class="goal">
+      <div class="ic">💎</div>
+      <div class="v">Mới mẻ</div>
+      <div class="l">Cảm xúc mua — KH được tặng</div>
+    </div>
+    <div class="goal">
+      <div class="ic">📊</div>
+      <div class="v">Margin ổn</div>
+      <div class="l">P&L 27-39% trong khung</div>
+    </div>
+  </div>
+
+  <!-- GIFT BANNER -->
+  <div class="gift-banner">
+    <div class="gift-banner-inner">
+      <div class="tt">★ 30SHINE TRI ÂN ★</div>
+      <div class="vl">Mua Topup nhận <b>quà UMOS chính hãng — lên đến 2,5 triệu</b></div>
+    </div>
+  </div>
+
+  <div class="orn"></div>
+</div>
+
+
+<!-- ============================================================== -->
+<!-- SECTION 2: CHƯƠNG TRÌNH 1 -->
+<!-- ============================================================== -->
+<div class="sec">
+  <div class="orn"></div>
+
+  <div class="sh">
+    <span class="sh-tag">CHƯƠNG TRÌNH 1</span>
+    <h2><b>Bill cao</b> · Vừa tặng buổi · Vừa tặng quà</h2>
+    <p class="sub">Tri ân KH chi tiêu cao — bỏ tiền nhiều thì cả buổi tặng (gói 10+2) cả máy massage to</p>
+  </div>
+
+  <div class="ct">
+    <div class="ctx">
+      <b>Đối tượng:</b> KH F3-F4 chi tiêu cao, đến đều, sẵn sàng mua combo nhiều gói &nbsp;·&nbsp;
+      <b>Salon áp dụng:</b> 10 salon Phát triển (8 Thương gia + 2 Cụm 1)
+    </div>
+
+    <!-- 2 TIER -->
+    <div class="tiers">
+
+      <!-- Tier 2 -->
+      <div class="tier">
+        <div class="t-no">2</div>
+        <h4>Quà Tri Ân · Mức 1</h4>
+        <div class="bill">Bill từ <span class="vnd">3M</span></div>
+        <p class="ctx2">Mua 2 thẻ Topup Loyalty hoặc 1 gói Combo 4 đơn</p>
+
+        <div class="gift">
+          <div class="em">💆‍♂️</div>
+          <div class="nm">MÁY MASSAGE CỔ VAI GÁY UMOS</div>
+          <div class="val">6 điểm tiếp xúc · chính hãng<br><b>Giá trị 1-1,5 triệu</b></div>
+        </div>
+
+        <div class="combos">
+          <div class="combo">
+            <div class="combo-nm">A. Đôi Cắt Gội</div>
+            <div class="combo-dt">C1 ShineCombo + R1 Gội Dưỡng sinh</div>
+            <div class="combo-pr">3.440K</div>
+          </div>
+          <div class="combo">
+            <div class="combo-nm">B. Đôi Chăm Gội</div>
+            <div class="combo-dt">C6 Gội C2 + R1 Gội Dưỡng sinh</div>
+            <div class="combo-pr">3.880K</div>
+          </div>
+          <div class="combo">
+            <div class="combo-nm">C. 1 Gói Lớn</div>
+            <div class="combo-dt">C3 Combo 4 (12 buổi)</div>
+            <div class="combo-pr">3.360K</div>
+          </div>
+          <div class="combo">
+            <div class="combo-nm">D. Premium Gội</div>
+            <div class="combo-dt">C2 Shinecombo 2 + C7 Gội C3 Chăm da</div>
+            <div class="combo-pr">4.110K</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="tier t3">
+        <div class="t-no">3</div>
+        <h4>Quà Tri Ân · Mức Đặc Biệt</h4>
+        <div class="bill">Bill từ <span class="vnd">6M</span></div>
+        <p class="ctx2">Mua 3 thẻ Loyalty hoặc 1 gói T1 Premium</p>
+
+        <div class="gift">
+          <div class="em">💪</div>
+          <div class="nm">MÁY MASSAGE CƠ BẮP UMOS MG2230</div>
+          <div class="val">Súng massage 6 đầu · động cơ siêu khoẻ<br><b>Giá trị 2-2,5 triệu</b></div>
+        </div>
+
+        <div class="combos">
+          <div class="combo">
+            <div class="combo-nm">A. Bộ 3 Hoàn Hảo</div>
+            <div class="combo-dt">C1 + R1 + C8 Cắt Gội Chăm da</div>
+            <div class="combo-pr">6.430K</div>
+          </div>
+          <div class="combo">
+            <div class="combo-nm">B. Bộ 3 Gội Đa Dạng</div>
+            <div class="combo-dt">C6 + R1 + C4 Gội Combo 4</div>
+            <div class="combo-pr">6.380K</div>
+          </div>
+          <div class="combo">
+            <div class="combo-nm">C. VIP 1 Phát ⭐</div>
+            <div class="combo-dt">T1 Gội trải nghiệm 75p (10+2)</div>
+            <div class="combo-pr">5.990K</div>
+          </div>
+          <div class="combo">
+            <div class="combo-nm">D. Bộ 3 Premium</div>
+            <div class="combo-dt">C7 + C4 + C2 (3 gói cao)</div>
+            <div class="combo-pr">6.610K</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BẢNG P&L MINI -->
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr>
+            <th>Combo</th>
+            <th>Bill</th>
+            <th>Quà</th>
+            <th>Cost quà</th>
+            <th>Cost DV</th>
+            <th>HH</th>
+            <th>Lãi biên</th>
+            <th>Margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>T2-A C1+R1</td><td>3.440K</td><td>Máy CVG</td><td>340K</td><td>1.720K</td><td>100K</td><td class="lai">1.280K</td><td class="mg">37%</td></tr>
+          <tr><td>T2-B C6+R1</td><td>3.880K</td><td>Máy CVG</td><td>340K</td><td>1.940K</td><td>100K</td><td class="lai">1.500K</td><td class="mg">39%</td></tr>
+          <tr><td>T2-C C3 đơn</td><td>3.360K</td><td>Máy CVG</td><td>340K</td><td>1.680K</td><td>100K</td><td class="lai">1.240K</td><td class="mg">37%</td></tr>
+          <tr><td>T3-A C1+R1+C8</td><td>6.430K</td><td>Cơ Bắp MG2230</td><td>615K</td><td>3.215K</td><td>100K</td><td class="lai">2.500K</td><td class="mg">39%</td></tr>
+          <tr><td>T3-B C6+R1+C4</td><td>6.380K</td><td>Cơ Bắp MG2230</td><td>615K</td><td>3.190K</td><td>100K</td><td class="lai">2.475K</td><td class="mg">39%</td></tr>
+          <tr><td>T3-C T1 đơn ⭐</td><td>5.990K</td><td>Cơ Bắp MG2230</td><td>615K</td><td>2.995K</td><td>100K</td><td class="lai">2.280K</td><td class="mg">38%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- P&L SUMMARY CT1 -->
+  <div class="sumc">
+    <div class="sumc-it"><div class="v">160</div><div class="l">Deals 4 tuần</div></div>
+    <div class="sumc-it"><div class="v">697M</div><div class="l">Doanh thu T5</div></div>
+    <div class="sumc-it"><div class="v">267M</div><div class="l">Lãi biên</div></div>
+    <div class="sumc-it"><div class="v">38%</div><div class="l">Margin TB</div></div>
+  </div>
+
+  <div class="orn"></div>
+</div>
+
+
+<!-- ============================================================== -->
+<!-- SECTION 3: CHƯƠNG TRÌNH 2 -->
+<!-- ============================================================== -->
+<div class="sec">
+  <div class="orn"></div>
+
+  <div class="sh">
+    <span class="sh-tag">CHƯƠNG TRÌNH 2</span>
+    <h2><b>Buổi lẻ + Quà</b> · Không tặng buổi · Tặng máy massage</h2>
+    <p class="sub">Số tiền chi trả dễ tiếp cận hơn — KH chần chừ với gói 6+1 cũ có lựa chọn mới mẻ</p>
+  </div>
+
+  <div class="ct">
+    <div class="ctx">
+      <b>Đối tượng:</b> KH F2-F3 chần chừ, "gói 6+1 tặng 1 buổi méo tham" &nbsp;·&nbsp;
+      <b>Salon áp dụng:</b> 15-20 salon Cụm 2-3<br>
+      <b>Logic:</b> KH bỏ <b>giá lẻ × số buổi</b> (mua nguyên giá, không có buổi tặng) — nhận <b>MÁY MASSAGE UMOS retail to</b> thay cho 1-2 buổi tặng. Cảm giác "lời 50-70%".
+    </div>
+
+    <!-- 8 SKU BẢNG -->
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>IdSPTopup</th>
+            <th>Dịch vụ</th>
+            <th>Buổi</th>
+            <th>Giá Topup</th>
+            <th>Quà UMOS</th>
+            <th>HH</th>
+            <th>Lãi biên</th>
+            <th>Margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>PA4-01</td><td>5305</td><td>Combo 4</td><td>6</td><td>2.334K</td><td>CVG AVS-S7</td><td>100K</td><td class="lai">622K</td><td class="mg">27%</td></tr>
+          <tr><td>PA4-02</td><td>5303</td><td>Cắt Gội Combo 3 Chăm da</td><td>6</td><td>1.794K</td><td>CVG N12.2</td><td>50K</td><td class="lai">561K</td><td class="mg">31%</td></tr>
+          <tr><td>PA4-03</td><td>5238</td><td>Gội Combo 4</td><td>6</td><td>1.734K</td><td>CVG N12.2</td><td>50K</td><td class="lai">531K</td><td class="mg">31%</td></tr>
+          <tr><td>PA4-04</td><td>5327</td><td>Gội Combo 3 Chăm da</td><td>6</td><td>1.314K</td><td>CVG N12.2</td><td>50K</td><td class="lai">321K</td><td class="mg">24%</td></tr>
+          <tr><td>PA4-05</td><td>5893</td><td>Gội Combo 2</td><td>10</td><td>1.590K</td><td>CVG N12.2</td><td>50K</td><td class="lai">459K</td><td class="mg">29%</td></tr>
+          <tr><td>PA4-06</td><td>5833</td><td>Gội Combo 3 Chăm da</td><td>10</td><td>2.190K</td><td>CVG N11</td><td>100K</td><td class="lai">622K</td><td class="mg">28%</td></tr>
+          <tr><td>PA4-07</td><td>5829</td><td>Cắt Gội Combo 3 Chăm da</td><td>10</td><td>2.990K</td><td>CVG AVS-S7</td><td>100K</td><td class="lai">950K</td><td class="mg">32%</td></tr>
+          <tr><td>PA4-08</td><td>5330</td><td>Gội Combo 3 Dưỡng sinh</td><td>10</td><td>2.190K</td><td>CVG N11</td><td>100K</td><td class="lai">622K</td><td class="mg">28%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="font-size:12px;color:#a8b2d1;margin-top:10px;font-style:italic">
+      Giá Topup PA #4 = <b style="color:#d4af37">Giá lẻ × Số buổi</b> · KH KHÔNG nhận buổi tặng · Tặng MÁY MASSAGE retail 1-1,5 triệu · HH áp dụng rule mới từ 01/05
+    </p>
+  </div>
+
+  <!-- P&L SUMMARY CT2 -->
+  <div class="sumc">
+    <div class="sumc-it"><div class="v">65</div><div class="l">Deals 4 tuần</div></div>
+    <div class="sumc-it"><div class="v">201M</div><div class="l">Doanh thu T5</div></div>
+    <div class="sumc-it"><div class="v">58M</div><div class="l">Lãi biên</div></div>
+    <div class="sumc-it"><div class="v">29%</div><div class="l">Margin TB</div></div>
+  </div>
+
+  <div class="orn"></div>
+</div>
+
+
+<!-- ============================================================== -->
+<!-- SECTION 4: SO SÁNH 2 CT -->
+<!-- ============================================================== -->
+<div class="sec">
+  <div class="orn"></div>
+
+  <div class="sh">
+    <span class="sh-tag">★ 2 CHƯƠNG TRÌNH SONG SONG ★</span>
+    <h2>Khác salon · Khác tệp KH · <b>Không xung đột</b></h2>
+    <p class="sub">Mỗi chương trình phục vụ 1 nhu cầu — cùng tận tồn UMOS · cùng đẩy doanh thu Topup T5</p>
+  </div>
+
+  <div class="cmp">
+    <div class="cmp-c">
+      <h5>▼ CT1 — Bill cao · Buổi + Quà</h5>
+      <p>
+        🎯 <b>10 salon Phát triển</b> (8 Thương gia + 2 Cụm 1)<br>
+        👥 KH F3-F4 chi tiêu cao, sẵn lòng combo nhiều<br>
+        🎁 KH vừa nhận <b>buổi tặng (10+2)</b> vừa nhận <b>máy massage</b><br>
+        💎 KH cảm nhận lời 42-50% bill<br>
+        📊 Margin <b>37-39%</b><br>
+        🗣️ Pitch: <i>"Anh mua từ 3-6 triệu là em tặng máy massage hộp lớn"</i>
+      </p>
+    </div>
+    <div class="cmp-c">
+      <h5>▼ CT2 — Buổi lẻ · Tặng máy thay buổi</h5>
+      <p>
+        🎯 <b>15-20 salon Cụm 2-3</b><br>
+        👥 KH F2-F3 chần chừ, "gói 6+1 tặng 1 méo tham"<br>
+        🎁 KH bỏ <b>giá lẻ × buổi</b> · không có buổi tặng · nhận <b>máy massage</b><br>
+        💎 KH cảm nhận lời 50-70%<br>
+        📊 Margin <b>24-32%</b><br>
+        🗣️ Pitch: <i>"Anh lấy gói 6 buổi nguyên giá, em tặng nguyên máy massage 1-1,5tr"</i>
+      </p>
+    </div>
+  </div>
+
+  <div class="orn"></div>
+</div>
+
+
+<!-- ============================================================== -->
+<!-- SECTION 5: TỔNG KẾT P&L + DECISION -->
+<!-- ============================================================== -->
+<div class="sec">
+  <div class="orn"></div>
+
+  <div class="sh">
+    <span class="sh-tag">★ P&L TỔNG 2 CT ★</span>
+    <h2>Tổng kết <b>tài chính</b> tháng 5/2026</h2>
+    <p class="sub">Tổng doanh thu, lãi biên, ROI để Ban Giám đốc duyệt</p>
+  </div>
+
+  <div class="tbl" style="margin:0 40px 18px">
+    <table>
+      <thead>
+        <tr>
+          <th>Hạng mục</th>
+          <th>CT1 Bill cao</th>
+          <th>CT2 Buổi lẻ</th>
+          <th>Tổng 2 CT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Số salon áp dụng</td><td>10</td><td>15-20</td><td>25-30</td></tr>
+        <tr><td>Số deals 4 tuần</td><td>160</td><td>65</td><td>225</td></tr>
+        <tr><td>Doanh thu Topup</td><td>697M</td><td>201M</td><td class="lai">898M</td></tr>
+        <tr><td>Cost quà (sunk cost - tồn UMOS)</td><td>~90M</td><td>~25M</td><td>115M</td></tr>
+        <tr><td>Lãi biên (kế toán)</td><td>267M</td><td>58M</td><td class="lai">325M</td></tr>
+        <tr><td>Cost setup POSM 1 lần</td><td>−8M</td><td>−4M</td><td>−12M</td></tr>
+        <tr><td><b>Lãi ròng T5</b></td><td><b>259M</b></td><td><b>54M</b></td><td class="lai" style="font-size:14px"><b>313M</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sumc">
+    <div class="sumc-it"><div class="v">898M</div><div class="l">Doanh thu Topup</div></div>
+    <div class="sumc-it"><div class="v">313M</div><div class="l">Lãi ròng</div></div>
+    <div class="sumc-it"><div class="v">35%</div><div class="l">Margin TB</div></div>
+    <div class="sumc-it"><div class="v">26x</div><div class="l">ROI cost setup</div></div>
+  </div>
+
+  <div class="orn"></div>
+</div>
+
+
+<!-- ============================================================== -->
+<!-- DECISION BAR -->
+<!-- ============================================================== -->
+<div class="dec">
+  <div class="lb">★ KÍNH TRÌNH BAN GIÁM ĐỐC ★</div>
+  <h3>5 điểm chốt duyệt — <b>2 phương án</b> Tri Ân T5/2026</h3>
+  <div class="dec-row">
+    <div class="dec-pill">✅ Đẩy <b>4,2 tỷ Topup</b></div>
+    <div class="dec-pill">✅ <b>Cash in</b> trước</div>
+    <div class="dec-pill">✅ Clear <b>167 máy UMOS</b></div>
+    <div class="dec-pill">✅ KH <b>siêu hời</b></div>
+    <div class="dec-pill">✅ Margin <b>27-39%</b> ổn</div>
+  </div>
+</div>
+
+
+<!-- ============================================================== -->
+<!-- FOOTER -->
+<!-- ============================================================== -->
+<div class="sec">
+  <div class="ft">
+    <p class="ft-tag">"Anh chăm sóc bản thân — vì những người anh yêu"</p>
+
+    <div class="ft-row">
+      <span class="pill">⏰ <b>01 – 31/05/2026</b></span>
+      <span class="pill">🏠 <b>25-30 salon</b> (10 CT1 + 15-20 CT2)</span>
+      <span class="pill">🎁 167 máy UMOS</span>
+      <span class="pill">💰 <b>898M doanh thu</b></span>
+    </div>
+
+    <p class="note">
+      Cost máy lấy BQGQ có VAT từ Sổ KT 18/04 · Cost DV 50% giá lẻ × số buổi · HH NV theo rule mới áp dụng từ 01/05 (<1,8M = 50K · ≥1,8M = 100K)<br>
+      Tồn UMOS hiện có 167 máy được tận dụng làm quà — không phát sinh chi phí cash thêm · Cảnh báo: Cơ Bắp MG2230 chỉ 29 máy, ưu tiên CT1 Tier 3
+    </p>
+
+    <div class="logo">30 <span>SHINE</span> · TRI ÂN T5/2026</div>
+  </div>
+
+  <div class="orn"></div>
+</div>
+
+</div>
+
+</body>
+</html>
