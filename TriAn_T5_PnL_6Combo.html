@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P&L 6 Combo · 30Shine Tri Ân T5/2026</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Helvetica Neue',Arial,sans-serif}
+  body{background:#0a0e27;padding:20px;min-height:100vh;color:#fff}
+  .wrap{max-width:1080px;margin:0 auto;background:linear-gradient(135deg,#0f1a3a 0%,#1a2855 50%,#0f1a3a 100%);border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);border:1px solid rgba(212,175,55,.25);position:relative}
+  .wrap::before{content:"";position:absolute;top:-20%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(212,175,55,.1) 0%,transparent 70%);pointer-events:none}
+
+  .orn{height:6px;background:linear-gradient(90deg,transparent,#d4af37 30%,#f4d670 50%,#d4af37 70%,transparent)}
+
+  .hd{padding:30px 35px 20px;text-align:center;position:relative;z-index:2}
+  .brand{font-size:11px;letter-spacing:6px;color:#d4af37;font-weight:700;margin-bottom:8px}
+  .ttl{font-size:36px;font-weight:900;color:#fff;line-height:1.1;letter-spacing:-1px}
+  .ttl b{color:#d4af37;font-style:italic;font-family:'Playfair Display','Times New Roman',serif}
+  .sub{font-size:13px;color:#a8b2d1;margin-top:8px;font-style:italic}
+
+  /* SUMMARY BAR */
+  .sm{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:18px 35px;position:relative;z-index:2}
+  .sm-it{background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.3);border-radius:10px;padding:12px;text-align:center}
+  .sm-it .v{font-size:22px;font-weight:900;color:#d4af37;line-height:1}
+  .sm-it .l{font-size:10px;color:#a8b2d1;margin-top:4px;letter-spacing:1px;text-transform:uppercase}
+
+  /* TIER GROUP */
+  .tg{padding:10px 25px;position:relative;z-index:2}
+  .tg-hd{display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(255,255,255,.04);border-radius:12px;margin-bottom:10px;border-left:4px solid #4caf50}
+  .tg-hd.t3{border-left-color:#d4af37;background:rgba(212,175,55,.08)}
+  .tg-no{background:#4caf50;color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px}
+  .tg-hd.t3 .tg-no{background:#d4af37;color:#0f1a3a}
+  .tg-ttl{flex:1}
+  .tg-ttl .tt{font-size:18px;color:#fff;font-weight:800;letter-spacing:.5px}
+  .tg-ttl .dt{font-size:11px;color:#a8b2d1;margin-top:2px}
+  .tg-bill{font-size:24px;color:#d4af37;font-weight:900}
+
+  /* TABLE */
+  .tbl{background:rgba(255,255,255,.03);border-radius:12px;overflow:hidden;border:1px solid rgba(212,175,55,.15);margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  thead th{background:rgba(212,175,55,.15);color:#d4af37;padding:11px 8px;text-align:center;font-weight:800;letter-spacing:.5px;font-size:11px;text-transform:uppercase;border-bottom:1px solid rgba(212,175,55,.3)}
+  thead th:first-child{text-align:left;padding-left:14px}
+  tbody td{padding:10px 8px;text-align:right;color:#fff;border-bottom:1px solid rgba(255,255,255,.05);font-weight:500}
+  tbody td:nth-child(1),tbody td:nth-child(2){text-align:left;padding-left:14px}
+  tbody td:nth-child(1){color:#d4af37;font-weight:700;font-size:12.5px;width:14%}
+  tbody td:nth-child(2){color:#fff;font-weight:600;width:24%}
+  tbody td:nth-child(2) small{color:#a8b2d1;font-weight:400;font-size:10.5px;display:block;margin-top:1px}
+  tbody tr:last-child td{border-bottom:none}
+  .opt-A{background:rgba(76,175,80,.06)}
+  .opt-C{background:rgba(255,152,0,.05)}
+  .lai{color:#d4af37 !important;font-weight:900 !important;font-size:13px !important}
+  .mg{font-weight:800 !important;color:#4ade80 !important}
+  .mg.lo{color:#fbbf24 !important}
+  .mg.bd{color:#f87171 !important}
+
+  /* FOOT */
+  .ft{background:rgba(0,0,0,.4);padding:20px 35px;text-align:center;border-top:1px solid rgba(212,175,55,.2)}
+  .ft-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;color:#a8b2d1;font-size:11px}
+  .ft-row .pill{background:rgba(212,175,55,.1);padding:5px 14px;border-radius:20px;border:1px solid rgba(212,175,55,.3)}
+  .ft-row .pill b{color:#d4af37}
+  .note{margin-top:12px;font-size:10px;color:#7080a0;line-height:1.6}
+  .logo{font-size:13px;color:#fff;font-weight:900;letter-spacing:3px;margin-top:14px;opacity:.6}
+  .logo span{color:#d4af37}
+
+  @media(max-width:768px){
+    .sm{grid-template-columns:repeat(2,1fr)}
+    .ttl{font-size:24px}
+    table{font-size:10.5px}
+    thead th{padding:8px 4px;font-size:9.5px}
+    tbody td{padding:7px 4px}
+    tbody td:nth-child(2) small{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="orn"></div>
+
+  <!-- HEADER -->
+  <div class="hd">
+    <div class="brand">★ 30 SHINE PRESENTS ★</div>
+    <h1 class="ttl">P&L 6 Combo · <b>Tri Ân</b> T5/2026</h1>
+    <p class="sub">18 trường hợp = 6 combo × 3 option quà · Cost UMOS thực có VAT · Cost DV 50% giá lẻ</p>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="sm">
+    <div class="sm-it"><div class="v">6</div><div class="l">Combo</div></div>
+    <div class="sm-it"><div class="v">18</div><div class="l">Trường hợp</div></div>
+    <div class="sm-it"><div class="v">31-39%</div><div class="l">Margin range</div></div>
+    <div class="sm-it"><div class="v">0</div><div class="l">Trường hợp lỗ</div></div>
+  </div>
+
+  <!-- TIER 2 -->
+  <div class="tg">
+    <div class="tg-hd">
+      <div class="tg-no">2</div>
+      <div class="tg-ttl">
+        <div class="tt">QUÀ TRI ÂN · MỨC 1</div>
+        <div class="dt">3 combo × 3 option quà · KH chọn 1 trong 3 quà</div>
+      </div>
+      <div class="tg-bill">≥ 3M</div>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr>
+            <th>Combo</th>
+            <th>Option quà</th>
+            <th>Bill</th>
+            <th>Cost quà</th>
+            <th>Cost DV 50%</th>
+            <th>HH NV</th>
+            <th>Lãi biên</th>
+            <th>Margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- T2-A: C1+R1 = 3,440K -->
+          <tr class="opt-A"><td rowspan="3">A. Đôi Cắt Gội<br><small>3.440K</small></td><td>🅐 CVG UMOS (avg)<small>54 máy tồn</small></td><td>3.440.000</td><td>370.000</td><td>1.720.000</td><td>100.000</td><td class="lai">1.250.000</td><td class="mg">36%</td></tr>
+          <tr><td>🅑 Mắt UMOS (avg)<small>69 máy tồn</small></td><td>3.440.000</td><td>392.000</td><td>1.720.000</td><td>100.000</td><td class="lai">1.228.000</td><td class="mg">36%</td></tr>
+          <tr class="opt-C"><td>🅒 Cơ Bắp nhỏ MG1S00E<small>chỉ 5 máy tồn</small></td><td>3.440.000</td><td>553.000</td><td>1.720.000</td><td>100.000</td><td class="lai">1.067.000</td><td class="mg lo">31%</td></tr>
+
+          <!-- T2-B: C6+R1 = 3,880K -->
+          <tr class="opt-A"><td rowspan="3">B. Đôi Chăm Gội<br><small>3.880K</small></td><td>🅐 CVG UMOS (avg)</td><td>3.880.000</td><td>370.000</td><td>1.940.000</td><td>100.000</td><td class="lai">1.470.000</td><td class="mg">38%</td></tr>
+          <tr><td>🅑 Mắt UMOS (avg)</td><td>3.880.000</td><td>392.000</td><td>1.940.000</td><td>100.000</td><td class="lai">1.448.000</td><td class="mg">37%</td></tr>
+          <tr class="opt-C"><td>🅒 Cơ Bắp nhỏ MG1S00E</td><td>3.880.000</td><td>553.000</td><td>1.940.000</td><td>100.000</td><td class="lai">1.287.000</td><td class="mg lo">33%</td></tr>
+
+          <!-- T2-C: C3 = 3,360K -->
+          <tr class="opt-A"><td rowspan="3">C. 1 Gói Lớn<br><small>3.360K (C3 Combo 4)</small></td><td>🅐 CVG UMOS (avg)</td><td>3.360.000</td><td>370.000</td><td>1.680.000</td><td>100.000</td><td class="lai">1.210.000</td><td class="mg">36%</td></tr>
+          <tr><td>🅑 Mắt UMOS (avg)</td><td>3.360.000</td><td>392.000</td><td>1.680.000</td><td>100.000</td><td class="lai">1.188.000</td><td class="mg">35%</td></tr>
+          <tr class="opt-C"><td>🅒 Cơ Bắp nhỏ MG1S00E</td><td>3.360.000</td><td>553.000</td><td>1.680.000</td><td>100.000</td><td class="lai">1.027.000</td><td class="mg lo">31%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TIER 3 -->
+  <div class="tg">
+    <div class="tg-hd t3">
+      <div class="tg-no">3</div>
+      <div class="tg-ttl">
+        <div class="tt">QUÀ TRI ÂN · MỨC ĐẶC BIỆT</div>
+        <div class="dt">3 combo × 3 option quà · Dành cho người trân trọng bản thân</div>
+      </div>
+      <div class="tg-bill">≥ 6M</div>
+    </div>
+
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr>
+            <th>Combo</th>
+            <th>Option quà</th>
+            <th>Bill</th>
+            <th>Cost quà</th>
+            <th>Cost DV 50%</th>
+            <th>HH NV</th>
+            <th>Lãi biên</th>
+            <th>Margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- T3-A: C1+R1+C8 = 6,430K -->
+          <tr class="opt-A"><td rowspan="3">A. Bộ 3 Hoàn Hảo<br><small>6.430K</small></td><td>🅐 Cơ Bắp lớn MG2230 ⭐<small>29 máy tồn — TOP CHỌN</small></td><td>6.430.000</td><td>615.000</td><td>3.215.000</td><td>100.000</td><td class="lai">2.500.000</td><td class="mg">39%</td></tr>
+          <tr><td>🅑 Combo CVG + Mắt</td><td>6.430.000</td><td>762.000</td><td>3.215.000</td><td>100.000</td><td class="lai">2.353.000</td><td class="mg">37%</td></tr>
+          <tr class="opt-C"><td>🅒 Mắt AS-EM05<small>10 máy tồn · premium</small></td><td>6.430.000</td><td>616.000</td><td>3.215.000</td><td>100.000</td><td class="lai">2.499.000</td><td class="mg">39%</td></tr>
+
+          <!-- T3-B: C6+R1+C4 = 6,380K -->
+          <tr class="opt-A"><td rowspan="3">B. Bộ 3 Gội Đa Dạng<br><small>6.380K</small></td><td>🅐 Cơ Bắp lớn MG2230 ⭐</td><td>6.380.000</td><td>615.000</td><td>3.190.000</td><td>100.000</td><td class="lai">2.475.000</td><td class="mg">39%</td></tr>
+          <tr><td>🅑 Combo CVG + Mắt</td><td>6.380.000</td><td>762.000</td><td>3.190.000</td><td>100.000</td><td class="lai">2.328.000</td><td class="mg">36%</td></tr>
+          <tr class="opt-C"><td>🅒 Mắt AS-EM05</td><td>6.380.000</td><td>616.000</td><td>3.190.000</td><td>100.000</td><td class="lai">2.474.000</td><td class="mg">39%</td></tr>
+
+          <!-- T3-C: T1 = 5,990K -->
+          <tr class="opt-A"><td rowspan="3">C. VIP 1 Phát<br><small>5.990K (T1 Gội 75p)</small></td><td>🅐 Cơ Bắp lớn MG2230 ⭐</td><td>5.990.000</td><td>615.000</td><td>2.995.000</td><td>100.000</td><td class="lai">2.280.000</td><td class="mg">38%</td></tr>
+          <tr><td>🅑 Combo CVG + Mắt</td><td>5.990.000</td><td>762.000</td><td>2.995.000</td><td>100.000</td><td class="lai">2.133.000</td><td class="mg">36%</td></tr>
+          <tr class="opt-C"><td>🅒 Mắt AS-EM05</td><td>5.990.000</td><td>616.000</td><td>2.995.000</td><td>100.000</td><td class="lai">2.279.000</td><td class="mg">38%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FOOT -->
+  <div class="ft">
+    <div class="ft-row">
+      <span class="pill">💎 Lãi biên TB <b>~37%</b></span>
+      <span class="pill">🎁 Cost quà <b>10-13%</b> doanh thu</span>
+      <span class="pill">📦 167 máy UMOS sẵn có</span>
+      <span class="pill">🏠 Pilot <b>10 salon Phát triển</b></span>
+    </div>
+    <p class="note">
+      Cost UMOS lấy BQGQ có VAT từ Sổ KT 18/04 · Cost DV 50% giá lẻ × số buổi · HH NV cố định 100K/deal · Margin tính trước cost setup POSM phân bổ<br>
+      Tất cả 18 trường hợp đều có margin ≥31% — không có trường hợp lỗ kể cả KH chọn quà cost cao nhất
+    </p>
+    <div class="logo">30 <span>SHINE</span> · TRI ÂN T5/2026</div>
+  </div>
+
+  <div class="orn"></div>
+</div>
+
+</body>
+</html>
