@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cẩm Nang TRI ÂN T5/2026 — GĐKV & SM</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Helvetica Neue',Arial,sans-serif}
+  body{background:#f5f7fa;padding:20px 12px;min-height:100vh;color:#1a2855;line-height:1.55}
+  .doc{max-width:880px;margin:0 auto}
+
+  /* HEADER */
+  .hd{background:linear-gradient(135deg,#1a2855 0%,#2d3f7a 100%);color:#fff;padding:32px 30px;border-radius:18px;text-align:center;margin-bottom:20px;box-shadow:0 16px 40px rgba(26,40,85,.25)}
+  .hd .brand{font-size:11px;letter-spacing:5px;color:#d4af37;font-weight:700;margin-bottom:10px}
+  .hd h1{font-size:36px;font-weight:900;line-height:1.1}
+  .hd h1 b{color:#d4af37;font-style:italic;font-family:'Playfair Display','Times New Roman',serif}
+  .hd .sub{font-size:14px;color:#a8b2d1;margin-top:8px}
+  .hd .tag{display:inline-block;background:#d4af37;color:#1a2855;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:800;margin-top:14px}
+
+  /* CARD */
+  .card{background:#fff;border-radius:14px;padding:24px 26px;margin-bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,.04);border-left:5px solid #1a2855}
+  .card.ct1{border-left-color:#27ae60}
+  .card.ct2{border-left-color:#f39c12}
+  .card.action{border-left-color:#e74c3c;background:#fff5f5}
+  .card.form{border-left-color:#d4af37;background:#fffbef;text-align:center}
+  .card h2{font-size:22px;color:#1a2855;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .card h2 .ico{display:inline-flex;width:36px;height:36px;background:#1a2855;color:#fff;border-radius:50%;align-items:center;justify-content:center;font-size:18px;font-weight:900;flex-shrink:0}
+  .card.ct1 h2 .ico{background:#27ae60}
+  .card.ct2 h2 .ico{background:#f39c12}
+  .card.action h2 .ico{background:#e74c3c}
+  .card.form h2 .ico{background:#d4af37;color:#1a2855}
+  .card .lead{font-size:14px;color:#666;font-style:italic;margin-bottom:14px}
+
+  /* INFO BOX */
+  .info{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+  .info-it{background:#f8f9fb;padding:12px 14px;border-radius:10px;border-left:3px solid #1a2855}
+  .info-it .lb{font-size:11px;color:#666;letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-bottom:3px}
+  .info-it .vl{font-size:14px;color:#1a2855;font-weight:600}
+
+  /* TIER */
+  .tier{background:#f8f9fb;border-radius:10px;padding:14px 16px;margin:10px 0;border:1px solid #e3e8f0}
+  .tier-tt{font-size:14px;font-weight:800;color:#1a2855;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+  .tier-tt .bill{font-size:18px;color:#27ae60}
+  .card.ct2 .tier-tt .bill{color:#f39c12}
+  .tier-dt{font-size:13px;color:#444;line-height:1.5}
+  .tier-gift{margin-top:8px;padding:10px;background:#fff;border-radius:8px;border:1px dashed #d4af37;font-size:13px;font-weight:600;color:#1a2855}
+  .tier-gift b{color:#d4af37}
+
+  /* PITCH */
+  .pitch{background:#fffbef;border:1px solid #d4af37;border-radius:10px;padding:14px 16px;margin:12px 0}
+  .pitch .lb{font-size:11px;color:#d4af37;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+  .pitch .txt{font-size:14px;color:#1a2855;font-style:italic;line-height:1.6}
+
+  /* SKU TABLE */
+  .tbl{overflow:auto;border:1px solid #e3e8f0;border-radius:10px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:540px}
+  thead th{background:#1a2855;color:#fff;padding:10px 8px;text-align:center;font-weight:700;font-size:11.5px}
+  thead th:first-child,thead th:nth-child(2){text-align:left;padding-left:12px}
+  tbody td{padding:9px 8px;text-align:right;color:#1a2855;border-bottom:1px solid #e3e8f0;font-weight:500}
+  tbody td:nth-child(1),tbody td:nth-child(2){text-align:left;padding-left:12px}
+  tbody td:nth-child(1){color:#f39c12;font-weight:800}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:#fafbfd}
+
+  /* CHECKLIST */
+  .chk{list-style:none;padding:0;margin:10px 0}
+  .chk li{padding:9px 0 9px 32px;position:relative;font-size:14px;color:#1a2855;border-bottom:1px solid #f0f2f5}
+  .chk li:last-child{border-bottom:none}
+  .chk li::before{content:"✓";position:absolute;left:0;top:8px;width:22px;height:22px;background:#27ae60;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:12px}
+  .chk li b{color:#e74c3c}
+
+  /* CTA */
+  .cta{display:block;background:linear-gradient(135deg,#d4af37 0%,#f4d670 100%);color:#1a2855;padding:18px 28px;border-radius:12px;font-size:18px;font-weight:900;text-align:center;text-decoration:none;margin:14px auto;max-width:480px;box-shadow:0 8px 24px rgba(212,175,55,.3);transition:transform .15s}
+  .cta:hover{transform:translateY(-2px)}
+  .cta-sub{font-size:12px;color:#666;text-align:center;margin-top:6px}
+
+  /* FOOTER */
+  .ft{text-align:center;padding:24px 14px;color:#666;font-size:12px;line-height:1.6}
+  .ft b{color:#1a2855}
+
+  @media(max-width:600px){
+    .hd h1{font-size:24px}
+    .info{grid-template-columns:1fr}
+    .card{padding:18px 16px}
+    .card h2{font-size:18px}
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="brand">★ 30 SHINE ★</div>
+  <h1>Cẩm Nang <b>TRI ÂN</b> · Tháng 5/2026</h1>
+  <p class="sub">Gửi: Giám đốc Khu vực · Salon Manager · Đầy đủ 58 salon</p>
+  <span class="tag">📋 ĐỌC NGAY · ĐĂNG KÝ NGAY</span>
+</div>
+
+<!-- TINH THẦN -->
+<div class="card">
+  <h2><span class="ico">★</span> Tinh thần "TRI ÂN"</h2>
+  <p style="font-size:15px;color:#1a2855;line-height:1.6">
+    Tháng 5/2026, Khối Thương mại triển khai chương trình <b>30Shine TRI ÂN</b> — gửi đến những <b>người đàn ông trụ cột</b>: vừa lo sự nghiệp, vừa chăm sóc bản thân, vừa là điểm tựa của gia đình.
+  </p>
+  <p style="font-size:14px;color:#444;margin-top:10px;line-height:1.6">
+    Mục tiêu: Đẩy doanh thu Topup T5 <b style="color:#27ae60">đạt 4,2 tỷ</b> · Tận tồn máy massage UMOS đang có sẵn tại salon · KH cảm thấy <b>siêu hời, được trân trọng</b>.
+  </p>
+
+  <div class="info" style="margin-top:14px">
+    <div class="info-it">
+      <div class="lb">💰 Cost</div>
+      <div class="vl">0đ CASH OUT thêm — máy đã trả tiền nhập từ trước</div>
+    </div>
+    <div class="info-it">
+      <div class="lb">⚡ Setup</div>
+      <div class="vl">Cực nhanh — máy đang sẵn tại salon</div>
+    </div>
+    <div class="info-it">
+      <div class="lb">💎 KH cảm nhận</div>
+      <div class="vl">Lời 42-70% bill · cảm xúc mới mẻ</div>
+    </div>
+    <div class="info-it">
+      <div class="lb">📊 Margin</div>
+      <div class="vl">27-39% — P&L ổn trong khung</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================================================== -->
+<!-- CHƯƠNG TRÌNH 1 -->
+<!-- ====================================================== -->
+<div class="card ct1">
+  <h2><span class="ico">1</span> Bill cao · Vừa tặng buổi · Vừa tặng máy</h2>
+  <p class="lead">KH chi tiêu cao mua combo nhiều gói — vừa nhận buổi tặng (gói 10+2) vừa nhận máy massage UMOS hộp lớn</p>
+
+  <div class="info">
+    <div class="info-it">
+      <div class="lb">👥 Đối tượng KH</div>
+      <div class="vl">F3-F4 chi tiêu cao, đến đều</div>
+    </div>
+    <div class="info-it">
+      <div class="lb">🏠 Salon phù hợp</div>
+      <div class="vl">Salon Phát triển + Thương gia</div>
+    </div>
+  </div>
+
+  <div class="tier">
+    <div class="tier-tt">
+      <span>🥈 Mức 1 — Bill từ 3 triệu</span>
+      <span class="bill">3M</span>
+    </div>
+    <div class="tier-dt">
+      Mua 2 thẻ Topup Loyalty hoặc 1 gói Combo 4 đơn
+    </div>
+    <div class="tier-gift">
+      🎁 Tặng <b>Máy massage Cổ Vai Gáy UMOS</b> — retail 1-1,5 triệu
+    </div>
+  </div>
+
+  <div class="tier">
+    <div class="tier-tt">
+      <span>🥇 Mức Đặc Biệt — Bill từ 6 triệu</span>
+      <span class="bill">6M</span>
+    </div>
+    <div class="tier-dt">
+      Mua 3 thẻ Loyalty hoặc 1 gói Gội trải nghiệm 75p (T1)
+    </div>
+    <div class="tier-gift">
+      🎁 Tặng <b>Máy massage Cơ Bắp UMOS MG2230</b> — retail 2-2,5 triệu
+    </div>
+  </div>
+
+  <div class="pitch">
+    <div class="lb">🗣️ NV PITCH GỢI Ý</div>
+    <div class="txt">"Anh mua từ 3 triệu là em tặng máy massage cổ vai gáy luôn. Mua từ 6 triệu thì máy cơ bắp to gấp đôi, ngoài bán 2,5 triệu đó anh."</div>
+  </div>
+</div>
+
+<!-- ====================================================== -->
+<!-- CHƯƠNG TRÌNH 2 -->
+<!-- ====================================================== -->
+<div class="card ct2">
+  <h2><span class="ico">2</span> Buổi lẻ · Không tặng buổi · Tặng máy thay buổi</h2>
+  <p class="lead">KH chần chừ với gói 6+1 cũ ("tặng 1 buổi méo tham") — giờ có lựa chọn mới: bỏ giá lẻ × số buổi, nhận máy massage to thay vì buổi tặng</p>
+
+  <div class="info">
+    <div class="info-it">
+      <div class="lb">👥 Đối tượng KH</div>
+      <div class="vl">F2-F3 chần chừ, chưa có máy massage</div>
+    </div>
+    <div class="info-it">
+      <div class="lb">🏠 Salon phù hợp</div>
+      <div class="vl">Salon Cụm 2-3 (KH chi tiêu trung)</div>
+    </div>
+  </div>
+
+  <p style="font-size:13px;color:#444;line-height:1.6;margin:10px 0">
+    <b>Cách bán:</b> KH bỏ giá lẻ × số buổi (mua nguyên giá) → KHÔNG nhận buổi tặng → nhận <b style="color:#d4af37">Máy massage UMOS chính hãng</b> thay vì 1-2 buổi tặng. KH cảm giác <b style="color:#27ae60">"lời 50-70%"</b>.
+  </p>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Tên gói</th>
+          <th>Buổi</th>
+          <th>Giá</th>
+          <th>Quà tặng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>5305</td><td>Combo 4</td><td>6</td><td>2.334K</td><td>Máy CVG</td></tr>
+        <tr><td>5303</td><td>Cắt Gội C3 Chăm da</td><td>6</td><td>1.794K</td><td>Máy CVG</td></tr>
+        <tr><td>5238</td><td>Gội Combo 4</td><td>6</td><td>1.734K</td><td>Máy CVG</td></tr>
+        <tr><td>5327</td><td>Gội C3 Chăm da</td><td>6</td><td>1.314K</td><td>Máy CVG/Mắt</td></tr>
+        <tr><td>5893</td><td>Gội Combo 2 (10+2)</td><td>10</td><td>1.590K</td><td>Máy CVG</td></tr>
+        <tr><td>5833</td><td>Gội C3 Chăm da (10+2)</td><td>10</td><td>2.190K</td><td>Máy CVG</td></tr>
+        <tr><td>5829</td><td>Cắt Gội C3 Chăm da (10+2)</td><td>10</td><td>2.990K</td><td>Máy CVG</td></tr>
+        <tr><td>5330</td><td>Gội Combo 3 Dưỡng sinh (10+2)</td><td>10</td><td>2.190K</td><td>Máy CVG</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pitch">
+    <div class="lb">🗣️ NV PITCH GỢI Ý</div>
+    <div class="txt">"Bên em có gói 6 buổi nguyên giá tặng máy massage hộp lớn, không có buổi tặng nhưng được nguyên máy 1-1,5 triệu. Anh thích gói nào?"</div>
+  </div>
+</div>
+
+<!-- ====================================================== -->
+<!-- VIỆC GĐKV & SM CẦN LÀM -->
+<!-- ====================================================== -->
+<div class="card action">
+  <h2><span class="ico">!</span> Việc GĐKV & SM cần làm NGAY</h2>
+
+  <p style="font-size:13px;font-weight:700;color:#1a2855;margin-bottom:8px">📋 GIÁM ĐỐC KHU VỰC:</p>
+  <ul class="chk">
+    <li><b>Đăng ký danh sách salon</b> trong khu vực muốn triển khai 2 CT (form bên dưới) — <b>trước 03/05</b></li>
+    <li>Brief lại nội dung 2 CT cho SM từng salon — Zoom 30 phút</li>
+    <li>Kiểm tra số tồn máy UMOS hiện có tại mỗi salon (sẽ là quà tặng)</li>
+  </ul>
+
+  <p style="font-size:13px;font-weight:700;color:#1a2855;margin:14px 0 8px">🏪 SALON MANAGER:</p>
+  <ul class="chk">
+    <li>Đăng ký triển khai — điền form Google bên dưới</li>
+    <li><b>Bố trí máy massage thật tại quầy lễ tân</b> — KH thấy ngay khi vào</li>
+    <li>Brief NV salon nội dung 2 CT — đầu ca 15 phút × 3 ngày</li>
+    <li>Theo dõi số deal có quà mỗi ngày — báo cáo cuối ca</li>
+  </ul>
+</div>
+
+<!-- ====================================================== -->
+<!-- FORM ĐĂNG KÝ -->
+<!-- ====================================================== -->
+<div class="card form">
+  <h2 style="justify-content:center"><span class="ico">📝</span> ĐĂNG KÝ TRIỂN KHAI</h2>
+  <p style="font-size:14px;color:#1a2855;margin-bottom:14px">
+    GĐKV và SM 58 salon vui lòng điền form đăng ký để Khối Thương mại tổng hợp triển khai
+  </p>
+
+  <a href="#GOOGLE_FORM_LINK" class="cta" id="form-link">
+    👉 BẤM VÀO ĐÂY ĐĂNG KÝ
+  </a>
+  <p class="cta-sub">
+    Form Google · điền 5 phút · hạn cuối <b>03/05/2026</b>
+  </p>
+
+  <p style="font-size:13px;color:#666;margin-top:18px;line-height:1.6">
+    <b>Sau khi đăng ký:</b><br>
+    1. Khối Thương mại tổng hợp danh sách salon T6 mở rộng<br>
+    2. Gửi bộ POSM (poster, biển giá, decal) về salon<br>
+    3. Brief Zoom training NV trước GO-LIVE
+  </p>
+</div>
+
+<!-- FOOTER -->
+<div class="ft">
+  <p style="font-style:italic;color:#d4af37;font-size:14px;margin-bottom:8px">"Anh chăm sóc bản thân — vì những người anh yêu"</p>
+  <p>Khối Thương mại 30Shine · Tháng 5/2026 · <b>Liên hệ chị Thuỳ</b> nếu cần hỗ trợ</p>
+</div>
+
+</div>
+
+</body>
+</html>
