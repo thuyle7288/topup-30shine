@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRI ÂN T5/2026 — Menu Quà tặng cho Khách hàng</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Helvetica Neue',Arial,sans-serif}
+  body{background:#f5f7fa;padding:16px 12px 32px;min-height:100vh;color:#1a2855;line-height:1.55}
+  .doc{max-width:720px;margin:0 auto}
+
+  /* HEADER */
+  .hd{background:linear-gradient(135deg,#1a2855 0%,#2d3f7a 100%);color:#fff;padding:30px 24px;border-radius:18px;text-align:center;margin-bottom:16px;box-shadow:0 16px 40px rgba(26,40,85,.25)}
+  .hd .brand{font-size:11px;letter-spacing:5px;color:#d4af37;font-weight:700;margin-bottom:10px}
+  .hd h1{font-size:32px;font-weight:900;line-height:1.1}
+  .hd h1 b{color:#d4af37;font-style:italic;font-family:'Playfair Display','Times New Roman',serif}
+  .hd .slogan{font-size:15px;color:#fff;margin-top:12px;font-style:italic}
+  .hd .slogan b{color:#d4af37;font-style:normal}
+
+  /* HERO scarcity */
+  .hero{background:#fff;border:2px solid #d4af37;border-radius:14px;padding:20px 22px;margin-bottom:16px;text-align:center}
+  .hero .big{font-size:22px;font-weight:900;color:#1a2855}
+  .hero .big span{color:#e74c3c}
+  .hero .sub{font-size:14px;color:#666;margin-top:6px;font-style:italic}
+
+  /* CARD */
+  .card{background:#fff;border-radius:14px;padding:22px 24px;margin-bottom:14px;box-shadow:0 4px 14px rgba(0,0,0,.04);border-left:5px solid #1a2855}
+  .card.ct1{border-left-color:#27ae60}
+  .card.ct2{border-left-color:#f39c12}
+  .card.pool{border-left-color:#d4af37}
+  .card h2{font-size:21px;color:#1a2855;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .card h2 .ico{display:inline-flex;width:34px;height:34px;background:#1a2855;color:#fff;border-radius:50%;align-items:center;justify-content:center;font-size:16px;font-weight:900;flex-shrink:0}
+  .card.ct1 h2 .ico{background:#27ae60}
+  .card.ct2 h2 .ico{background:#f39c12}
+  .card.pool h2 .ico{background:#d4af37;color:#1a2855}
+  .card .lead{font-size:14px;color:#555;font-style:italic;margin-bottom:14px}
+
+  /* TIER bill */
+  .tier{background:#f8f9fb;border-radius:10px;padding:14px 16px;margin:10px 0;border:1px solid #e3e8f0}
+  .tier-tt{font-size:15px;font-weight:800;color:#1a2855;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
+  .tier-tt .bill{font-size:20px;color:#27ae60;font-weight:900}
+  .card.ct2 .tier-tt .bill{color:#f39c12}
+  .tier-dt{font-size:14px;color:#444;line-height:1.55}
+  .tier-dt b{color:#1a2855}
+
+  /* TABLE */
+  .tbl{overflow:auto;border:1px solid #e3e8f0;border-radius:10px;margin:12px 0}
+  table{width:100%;border-collapse:collapse;font-size:13px;min-width:480px}
+  thead th{background:#1a2855;color:#fff;padding:10px 8px;text-align:center;font-weight:700;font-size:11.5px}
+  thead th:nth-child(2){text-align:left;padding-left:12px}
+  tbody td{padding:9px 8px;text-align:right;color:#1a2855;border-bottom:1px solid #e3e8f0;font-weight:500}
+  tbody td:nth-child(1),tbody td:nth-child(2){text-align:left;padding-left:12px}
+  tbody td:nth-child(1){color:#f39c12;font-weight:800}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even){background:#fafbfd}
+
+  /* Pool list */
+  .pool-list{display:grid;grid-template-columns:1fr;gap:8px;margin:10px 0}
+  .pool-it{background:#fffbef;border:1px solid #d4af37;border-radius:9px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13.5px}
+  .pool-it .nm{color:#1a2855;font-weight:700;flex:1}
+  .pool-it .tg{font-size:11px;color:#a87f00;background:#fff;padding:3px 9px;border-radius:12px;font-weight:700;flex-shrink:0}
+  .pool-sub{font-size:13px;color:#666;margin:8px 0 4px;font-weight:700}
+
+  /* CTA */
+  .cta{display:block;background:linear-gradient(135deg,#d4af37 0%,#f4d670 100%);color:#1a2855;padding:18px 28px;border-radius:12px;font-size:17px;font-weight:900;text-align:center;margin:18px auto 8px;max-width:480px;box-shadow:0 8px 24px rgba(212,175,55,.3)}
+  .cta-sub{font-size:13px;color:#666;text-align:center;margin-top:8px;font-style:italic}
+
+  /* FOOTER */
+  .ft{text-align:center;padding:22px 14px;color:#666;font-size:12px;line-height:1.6}
+  .ft b{color:#1a2855}
+  .ft .quote{font-style:italic;color:#d4af37;font-size:14px;margin-bottom:8px}
+
+  @media(max-width:600px){
+    .hd h1{font-size:24px}
+    .card{padding:18px 16px}
+    .card h2{font-size:18px}
+    .hero .big{font-size:18px}
+  }
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="brand">★ 30 SHINE ★</div>
+  <h1><b>TRI ÂN</b> · Tháng 5/2026</h1>
+  <p class="slogan">"Mua thẻ trả trước, <b>rước máy massage</b>"</p>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="big">Dành tặng <span>1.000 khách hàng đầu tiên</span><br>trong tháng 5/2026</p>
+  <p class="sub">Số lượng có hạn — tri ân người đàn ông trụ cột</p>
+</div>
+
+<!-- CT1 -->
+<div class="card ct1">
+  <h2><span class="ico">1</span> CT1 — Mua thẻ trả trước · Tặng máy massage</h2>
+  <p class="lead">Mua Topup (thẻ trả trước) đạt 2 mức bill — tặng máy massage UMOS chính hãng tại quầy.</p>
+
+  <div class="tier">
+    <div class="tier-tt">MỨC 1 <span class="bill">≥ 3.000.000đ</span></div>
+    <div class="tier-dt">
+      Mua Topup tổng <b>≥ 3 triệu</b> trong 1 lần thanh toán<br>
+      → Tặng <b>1 máy massage</b> trong <b>Pool A</b> (6 dòng — KH tự chọn tại quầy)
+    </div>
+  </div>
+
+  <div class="tier">
+    <div class="tier-tt">MỨC 2 <span class="bill">≥ 6.000.000đ</span></div>
+    <div class="tier-dt">
+      Mua Topup tổng <b>≥ 6 triệu</b> trong 1 lần thanh toán<br>
+      → Tặng <b>1 máy massage cao cấp</b> trong <b>Pool B</b> (3 dòng máy cao cấp)
+    </div>
+  </div>
+</div>
+
+<!-- CT2 -->
+<div class="card ct2">
+  <h2><span class="ico">2</span> CT2 — 8 Gói buổi đặc biệt T5 · Mua là tặng máy</h2>
+  <p class="lead">Mua nguyên giá 1 trong 8 gói buổi đặc biệt — tặng máy massage Pool A ngay, không cần đợi đủ mức 3M.</p>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:55px">Mã</th>
+          <th>Tên gói</th>
+          <th style="width:55px">Số buổi</th>
+          <th style="width:90px">Giá Topup</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>8001</td><td>Combo 4 — TRI ÂN T5</td><td style="text-align:center">6</td><td>2.334.000đ</td></tr>
+        <tr><td>8002</td><td>Cắt Gội Combo 3 Chăm da</td><td style="text-align:center">6</td><td>1.794.000đ</td></tr>
+        <tr><td>8003</td><td>Gội Combo 4</td><td style="text-align:center">6</td><td>1.734.000đ</td></tr>
+        <tr><td>8004</td><td>Gội Combo 3 Chăm da</td><td style="text-align:center">6</td><td>1.314.000đ</td></tr>
+        <tr><td>8005</td><td>Gội Combo 2</td><td style="text-align:center">10</td><td>1.590.000đ</td></tr>
+        <tr><td>8006</td><td>Gội Combo 3 Chăm da</td><td style="text-align:center">10</td><td>2.190.000đ</td></tr>
+        <tr><td>8007</td><td>Cắt Gội Combo 3 Chăm da</td><td style="text-align:center">10</td><td>2.990.000đ</td></tr>
+        <tr><td>8008</td><td>Gội Combo 3 Dưỡng sinh</td><td style="text-align:center">10</td><td>2.190.000đ</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13px;color:#666;font-style:italic;margin-top:6px">→ Mỗi gói tặng kèm <b>1 máy massage Pool A</b> (KH tự chọn tại quầy)</p>
+</div>
+
+<!-- POOL MÁY -->
+<div class="card pool">
+  <h2><span class="ico">🎁</span> Danh sách máy quà — KH chọn tại quầy</h2>
+  <p class="lead">Máy massage UMOS chính hãng — bảo hành 12 tháng, đầy đủ hộp + phụ kiện.</p>
+
+  <p class="pool-sub">POOL A (cho mức 3 triệu / 8 SKU CT2):</p>
+  <div class="pool-list">
+    <div class="pool-it"><span class="nm">Máy Massage Cổ Vai Gáy UMOS N11 (6 điểm)</span><span class="tg">POOL A</span></div>
+    <div class="pool-it"><span class="nm">Máy Massage CVG UMOS AVS-S7 (N12, 7 điểm)</span><span class="tg">POOL A</span></div>
+    <div class="pool-it"><span class="nm">Máy Massage CVG VLT UMOS 202W</span><span class="tg">POOL A</span></div>
+    <div class="pool-it"><span class="nm">Máy Massage CVG UMOS N12.2 (6 điểm)</span><span class="tg">POOL A</span></div>
+    <div class="pool-it"><span class="nm">Máy Massage Mắt UMOS AR-216D</span><span class="tg">POOL A</span></div>
+    <div class="pool-it"><span class="nm">Máy Massage Mắt UMOS M810 (16 điểm)</span><span class="tg">POOL A</span></div>
+  </div>
+
+  <p class="pool-sub" style="margin-top:14px">POOL B — máy cao cấp (cho mức 6 triệu):</p>
+  <div class="pool-list">
+    <div class="pool-it" style="background:#fffefa;border-color:#a87f00"><span class="nm">Máy Massage Cơ Bắp UMOS MG1500E</span><span class="tg" style="background:#a87f00;color:#fff">POOL B</span></div>
+    <div class="pool-it" style="background:#fffefa;border-color:#a87f00"><span class="nm">Máy Massage Cơ Bắp UMOS MG2230 (6 đầu)</span><span class="tg" style="background:#a87f00;color:#fff">POOL B</span></div>
+    <div class="pool-it" style="background:#fffefa;border-color:#a87f00"><span class="nm">Máy Massage Mắt UMOS EM05 (cao cấp)</span><span class="tg" style="background:#a87f00;color:#fff">POOL B</span></div>
+  </div>
+  <p style="font-size:12.5px;color:#666;font-style:italic;margin-top:10px">→ Mỗi salon trưng bày các máy thực tế đang còn — KH xem & chọn tại chỗ. Mẫu máy có thể khác nhau giữa các salon.</p>
+</div>
+
+<!-- CTA -->
+<div class="cta">💬 Hỏi nhân viên tư vấn ngay tại quầy lễ tân</div>
+<p class="cta-sub">Áp dụng từ 15/05 — 31/05/2026 · Số lượng có hạn cho 1.000 khách hàng đầu tiên</p>
+
+<!-- FOOTER -->
+<div class="ft">
+  <p class="quote">"Anh chăm sóc bản thân — vì những người anh yêu"</p>
+  <p>30Shine TRI ÂN · Tháng 5/2026 · Cảm ơn anh đã đồng hành cùng 30Shine</p>
+</div>
+
+</div>
+
+</body>
+</html>
