@@ -84,6 +84,35 @@
     .card{padding:18px 16px}
     .card h2{font-size:18px}
   }
+
+  /* QR PRINT CARD */
+  .qr-card{background:linear-gradient(160deg,#0f1a3a 0%,#1a2855 50%,#2d3f7a 100%);color:#fff;padding:30px 24px;border-radius:18px;text-align:center;margin-bottom:16px;position:relative;overflow:hidden}
+  .qr-card::before{content:"";position:absolute;top:-40px;right:-40px;width:160px;height:160px;border:3px solid #d4af37;border-radius:50%;opacity:.18}
+  .qr-card::after{content:"";position:absolute;bottom:-50px;left:-50px;width:200px;height:200px;border:3px solid #d4af37;border-radius:50%;opacity:.12}
+  .qr-card .brand{font-size:11px;letter-spacing:6px;color:#d4af37;font-weight:800}
+  .qr-card h1{font-size:32px;font-weight:900;margin-top:6px;position:relative;z-index:1}
+  .qr-card h1 b{color:#d4af37;font-style:italic;font-family:'Playfair Display','Times New Roman',serif}
+  .qr-card .sub-tt{font-size:13px;color:#a8b2d1;margin-top:6px;letter-spacing:1.5px;position:relative;z-index:1}
+  .qr-img-wrap{background:#fff;display:inline-block;padding:18px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.3);margin:20px 0;position:relative;z-index:1}
+  .qr-img-wrap img{display:block;width:280px;height:280px}
+  .qr-call{font-size:13px;font-weight:800;color:#d4af37;letter-spacing:2px;position:relative;z-index:1}
+  .qr-big{font-size:22px;font-weight:900;margin-top:8px;line-height:1.2;position:relative;z-index:1}
+  .qr-big b{color:#d4af37;font-style:italic;font-family:'Playfair Display','Times New Roman',serif}
+  .qr-slogan{font-size:13px;color:#a8b2d1;font-style:italic;border-top:1px dashed rgba(212,175,55,.4);padding-top:14px;margin-top:18px;position:relative;z-index:1}
+  .qr-slogan b{color:#d4af37;font-style:normal}
+  .print-btn{display:inline-block;background:#d4af37;color:#1a2855;padding:12px 24px;border-radius:10px;font-weight:900;cursor:pointer;border:none;font-size:14px;margin-top:10px;font-family:inherit}
+  .print-btn:hover{background:#f4d670}
+
+  /* PRINT MODE — chỉ in QR card, ẩn mọi thứ khác */
+  @media print{
+    @page{size:A5 portrait;margin:0}
+    body{background:#fff;padding:0}
+    .doc > *{display:none !important}
+    .doc > .qr-print-section{display:block !important;page-break-inside:avoid}
+    .qr-print-section .print-btn,.qr-print-section .print-note{display:none !important}
+    .qr-card{margin:0;border-radius:0;width:148mm;height:210mm;display:flex;flex-direction:column;justify-content:space-between;padding:14mm 12mm}
+    .qr-img-wrap img{width:90mm;height:90mm}
+  }
 </style>
 </head>
 <body>
@@ -255,6 +284,54 @@
 </div>
 
 <!-- ====================================================== -->
+<!-- IT SETUP — MÃ ID CAMP & ID SKU TỪ IT -->
+<!-- ====================================================== -->
+<div class="card" style="border-left-color:#2e75b6;background:#f0f6fc">
+  <h2 style="color:#2e75b6"><span class="ico" style="background:#2e75b6">🛠️</span> Mã IT Setup — Cập nhật khi IT bàn giao</h2>
+  <p class="lead" style="font-size:13px">Khu vực để Khối TM điền các mã chính thức từ BP IT — phục vụ tra cứu nhanh khi vận hành, báo cáo.</p>
+
+  <p style="font-size:13.5px;font-weight:700;color:#1a2855;margin:10px 0 6px">3 Camp đã setup trên hệ thống:</p>
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th style="width:60px">#</th><th>Tên Camp IT</th><th style="width:80px">Trigger</th><th style="width:140px">ID Camp (IT điền)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Topup CT1 — Mức 1 (Bill ≥ 3M)</td><td style="text-align:center">≥3M</td><td style="color:#999;font-style:italic">__________</td></tr>
+        <tr><td>2</td><td>Topup CT1 — Mức 2 (Bill ≥ 6M)</td><td style="text-align:center">≥6M</td><td style="color:#999;font-style:italic">__________</td></tr>
+        <tr><td>3</td><td>Topup CT2 — 8 SKU mới</td><td style="text-align:center">SKU</td><td style="color:#999;font-style:italic">__________</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:13.5px;font-weight:700;color:#1a2855;margin:14px 0 6px">8 SKU Topup mới CT2 — ID IT đã tạo:</p>
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th style="width:60px">Mã gợi ý</th><th>Tên gói</th><th style="width:55px">Buổi</th><th style="width:90px">Giá</th><th style="width:130px">ID IT thực tế</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>8001</td><td>Combo 4 — TRI ÂN T5</td><td style="text-align:center">6</td><td>2.334.000đ</td><td style="color:#999;font-style:italic">________</td></tr>
+        <tr><td>8002</td><td>Cắt Gội C3 Chăm da</td><td style="text-align:center">6</td><td>1.794.000đ</td><td style="color:#999;font-style:italic">________</td></tr>
+        <tr><td>8003</td><td>Gội Combo 4</td><td style="text-align:center">6</td><td>1.734.000đ</td><td style="color:#999;font-style:italic">________</td></tr>
+        <tr><td>8004</td><td>Gội C3 Chăm da</td><td style="text-align:center">6</td><td>1.314.000đ</td><td style="color:#999;font-style:italic">________</td></tr>
+        <tr><td>8005</td><td>Gội Combo 2</td><td style="text-align:center">10</td><td>1.590.000đ</td><td style="color:#999;font-style:italic">________</td></tr>
+        <tr><td>8006</td><td>Gội C3 Chăm da</td><td style="text-align:center">10</td><td>2.190.000đ</td><td style="color:#999;font-style:italic">________</td></tr>
+        <tr><td>8007</td><td>Cắt Gội C3 Chăm da</td><td style="text-align:center">10</td><td>2.990.000đ</td><td style="color:#999;font-style:italic">________</td></tr>
+        <tr><td>8008</td><td>Gội C3 Dưỡng sinh</td><td style="text-align:center">10</td><td>2.190.000đ</td><td style="color:#999;font-style:italic">________</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:13.5px;font-weight:700;color:#1a2855;margin:14px 0 6px">ID SP máy quà — đã đúng hệ thống IT:</p>
+  <p style="font-size:13px;color:#1a2855;line-height:1.6">
+    <b>Pool A (6 máy)</b>: 4718 · 4813 · 4822 · 4987 · 4818 · 4809 &nbsp;|&nbsp;
+    <b>Pool B (3 máy cao cấp)</b>: 4812 · 4811 · 4817
+  </p>
+  <p style="font-size:12.5px;color:#666;margin-top:8px;font-style:italic">→ Sau khi IT gửi xác nhận các ID Camp + 8 ID SKU, Khối TM cập nhật vào bảng trên và push lại link.</p>
+</div>
+
+<!-- ====================================================== -->
 <!-- THÔNG ĐIỆP TRUYỀN THÔNG -->
 <!-- ====================================================== -->
 <div class="card" style="border-left-color:#d4af37;background:#fffbef">
@@ -290,10 +367,9 @@
     </p>
     <p style="font-size:13.5px;color:#1a2855;margin-bottom:0">
       📱 <b>Menu online cho KH tham khảo:</b>
-      <a href="TriAn_T5_KH_Menu.html" style="color:#1a2855;font-weight:700;text-decoration:underline">TriAn_T5_KH_Menu.html</a>
+      <a href="TriAn_T5_KH_Menu.html" style="color:#1a2855;font-weight:700;text-decoration:underline">Xem bản KH (trang riêng)</a>
       &nbsp;·&nbsp;
-      In QR code A5 đặt cạnh khu trưng bày — KH scan tự xem các máy quà:
-      <a href="QRCode_TRIAN_T5.html" style="color:#1a2855;font-weight:700;text-decoration:underline">Mở trang QR để in</a>
+      QR code A5 đặt cạnh khu trưng bày → cuộn xuống mục <a href="#qr-print" style="color:#e74c3c;font-weight:700;text-decoration:underline">"In QR menu"</a> bên dưới
     </p>
   </div>
 </div>
@@ -541,6 +617,32 @@
     2. BP Cung ứng điều phối máy về salon trong 1-2 ngày<br>
     3. Salon vào CT — chạy theo cùng cơ chế Wave 1 đến hết 31/05
   </p>
+</div>
+
+<!-- ====================================================== -->
+<!-- QR PRINT — A5 in tại salon -->
+<!-- ====================================================== -->
+<div class="qr-print-section" id="qr-print">
+  <div class="card" style="border-left-color:#1a2855;background:#fff;text-align:center">
+    <h2 style="justify-content:center"><span class="ico">🖨️</span> In QR menu A5 — đặt cạnh khu trưng bày</h2>
+    <p class="print-note" style="font-size:13.5px;color:#666;margin-bottom:14px">SM mở trang này → bấm <b>"In ngay"</b> bên dưới (hoặc Ctrl+P) → chọn A5 → in màu → đặt cạnh khu trưng bày máy massage.</p>
+    <button class="print-btn" onclick="window.print()">🖨️ In ngay (A5)</button>
+  </div>
+
+  <div class="qr-card">
+    <div class="brand">★ 30 SHINE ★</div>
+    <h1><b>TRI ÂN</b> · T5/2026</h1>
+    <div class="sub-tt">QUÉT MÃ XEM QUÀ TẶNG</div>
+
+    <div class="qr-img-wrap">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=10&data=https%3A%2F%2Fthuyle7288.github.io%2Ftopup-30shine%2FTriAn_T5_KH_Menu.html" alt="QR Code TRI ÂN T5">
+    </div>
+
+    <div class="qr-call">MUA THẺ TRẢ TRƯỚC</div>
+    <div class="qr-big">Rước <b>máy massage</b><br>về nhà</div>
+
+    <div class="qr-slogan">Chỉ dành cho <b>1.000 KH đầu tiên</b> tháng 5/2026</div>
+  </div>
 </div>
 
 <!-- FOOTER -->
