@@ -40,15 +40,15 @@ Quà = tận dụng tồn máy massage UMOS đang có sẵn ở salon (167 máy,
 
 ### 3.2 Mapping pool quà CT1
 
-| Mức | Ngưỡng bill | Pool quà (KH chọn 1) |
+| Mức | Ngưỡng bill | Pool quà |
 |---|---:|---|
-| **CT1-A** | ≥ 3.000.000đ | Pool A (Quà thường) — xem §5 |
-| **CT1-B** | ≥ 6.000.000đ | Pool B (Quà cao cấp) — xem §5 |
+| **CT1-A** | ≥ 3.000.000đ | Voucher tag **POOL_A** — KH chọn 1 máy trong 8 dòng Pool A (xem §5.1) |
+| **CT1-B** | ≥ 6.000.000đ | Voucher tag **POOL_B** — KH chọn 1 máy trong 3 dòng Pool B (xem §5.2) |
 
 ### 3.3 Cơ chế xuất voucher
-- POS sau khi xác nhận thanh toán đạt ngưỡng → **in voucher mã 6 số** (vd: TRIAN001234)
-- Voucher ghi rõ: tên KH, salon, ngày mua, pool quà được chọn (A hoặc B), hạn nhận quà (trong vòng 30 ngày từ ngày mua)
-- KH cầm voucher ra quầy lễ tân → SM scan mã → trao máy + ghi nhận xuất kho
+- POS sau khi xác nhận thanh toán đạt ngưỡng → **in voucher mã 6 số** kèm tag pool (vd: TRIAN001234 — POOL_A)
+- Voucher ghi rõ: tên KH, salon, ngày mua, pool quà, hạn nhận quà (trong vòng 30 ngày từ ngày mua)
+- KH cầm voucher ra quầy → SM cho xem các máy đang có sẵn ở salon → KH chọn 1 máy trong pool → SM scan voucher + nhập Mã Misa máy KH lấy
 - Mã voucher đã dùng → POS đánh dấu redeem, không cho tái sử dụng
 
 ---
@@ -57,60 +57,76 @@ Quà = tận dụng tồn máy massage UMOS đang có sẵn ở salon (167 máy,
 
 ### 4.1 Tạo 8 IdSPTopup mới (CHƯA có trên hệ thống)
 
-| STT | IdSPTopup mới (gợi ý) | ServiceId DV gốc | Tên DV gốc | Số buổi | Giá Topup | HSD | Tên hiển thị KH | Map quà (Mã Misa) |
-|---:|---|---:|---|---:|---:|---:|---|---|
-| 1 | **8001** | 1048 | Combo 4 | 6 | **2.334.000đ** | 365 ngày | Combo 4 — TRI ÂN T5 (Tặng máy massage CVG UMOS) | **MAYMS_010** |
-| 2 | **8002** | 1047 | Cắt Gội Combo 3 - Chăm da | 6 | **1.794.000đ** | 365 | Cắt Gội C3 Chăm da — TRI ÂN T5 (Tặng máy massage CVG UMOS) | **MAYMS_015** |
-| 3 | **8003** | 1060 | Gội Combo 4 | 6 | **1.734.000đ** | 365 | Gội Combo 4 — TRI ÂN T5 (Tặng máy massage CVG UMOS) | **MAYMS_001** |
-| 4 | **8004** | 1059 | Gội Combo 3 - Chăm da | 6 | **1.314.000đ** | 365 | Gội C3 Chăm da — TRI ÂN T5 (Tặng máy massage UMOS) | **MAYMS_006** |
-| 5 | **8005** | 1058 | Gội Combo 2 | 10 | **1.590.000đ** | 365 | Gội Combo 2 — TRI ÂN T5 (Tặng máy massage CVG UMOS) | **MAYMS_015** |
-| 6 | **8006** | 1059 | Gội Combo 3 - Chăm da | 10 | **2.190.000đ** | 365 | Gội C3 Chăm da — TRI ÂN T5 (Tặng máy massage CVG UMOS) | **MAYMS_001** |
-| 7 | **8007** | 1047 | Cắt Gội Combo 3 - Chăm da | 10 | **2.990.000đ** | 365 | Cắt Gội C3 Chăm da — TRI ÂN T5 (Tặng máy massage CVG UMOS) | **MAYMS_010** |
-| 8 | **8008** | 934 | Gội Combo 3 Dưỡng sinh | 10 | **2.190.000đ** | 365 | Gội Dưỡng sinh — TRI ÂN T5 (Tặng máy massage CVG UMOS) | **MAYMS_001** |
+| STT | IdSPTopup mới (gợi ý) | ServiceId DV gốc | Tên DV gốc | Số buổi | Giá Topup | HSD | Tên hiển thị KH |
+|---:|---|---:|---|---:|---:|---:|---|
+| 1 | **8001** | 1048 | Combo 4 | 6 | **2.334.000đ** | 365 ngày | Combo 4 — TRI ÂN T5 (Tặng máy massage UMOS) |
+| 2 | **8002** | 1047 | Cắt Gội Combo 3 - Chăm da | 6 | **1.794.000đ** | 365 | Cắt Gội C3 Chăm da — TRI ÂN T5 (Tặng máy massage UMOS) |
+| 3 | **8003** | 1060 | Gội Combo 4 | 6 | **1.734.000đ** | 365 | Gội Combo 4 — TRI ÂN T5 (Tặng máy massage UMOS) |
+| 4 | **8004** | 1059 | Gội Combo 3 - Chăm da | 6 | **1.314.000đ** | 365 | Gội C3 Chăm da — TRI ÂN T5 (Tặng máy massage UMOS) |
+| 5 | **8005** | 1058 | Gội Combo 2 | 10 | **1.590.000đ** | 365 | Gội Combo 2 — TRI ÂN T5 (Tặng máy massage UMOS) |
+| 6 | **8006** | 1059 | Gội Combo 3 - Chăm da | 10 | **2.190.000đ** | 365 | Gội C3 Chăm da — TRI ÂN T5 (Tặng máy massage UMOS) |
+| 7 | **8007** | 1047 | Cắt Gội Combo 3 - Chăm da | 10 | **2.990.000đ** | 365 | Cắt Gội C3 Chăm da — TRI ÂN T5 (Tặng máy massage UMOS) |
+| 8 | **8008** | 934 | Gội Combo 3 Dưỡng sinh | 10 | **2.190.000đ** | 365 | Gội Dưỡng sinh — TRI ÂN T5 (Tặng máy massage UMOS) |
 
 **Lưu ý quan trọng cho IT:**
 - ⚠️ **CHƯA có concept "tặng buổi"** trong 8 SKU này — KH mua đúng số buổi đã trả tiền (6 hoặc 10), KHÔNG có 1-2 buổi tặng thêm
 - Giá Topup = Giá lẻ DV × Số buổi (mua nguyên giá)
-- Khi POS bán 1 trong 8 SKU này → **tự động kích hoạt in voucher quà** với Mã Misa quà tương ứng (xem cột cuối)
+- Khi POS bán 1 trong 8 SKU này → **tự động kích hoạt in voucher quà · KH chọn 1 máy trong POOL A** (xem §5.1)
 - Tag Camp = `Topup CT2` để báo cáo dễ tổng hợp
 - Áp dụng 15/05 - 31/05/2026 (sau đó IT ngắt SKU)
 - Số IdSPTopup gợi ý 8001-8008 — IT điều chỉnh theo dải số quản lý nội bộ nếu cần
 
-### 4.2 Cơ chế xuất voucher CT2
+### 4.2 Cơ chế xuất voucher CT2 — KH CHỌN QUÀ TRONG POOL
 
-- POS bán 1 trong 8 SKU CT2 → **tự động in voucher gắn liền** với Mã Misa quà đã map
-- Voucher quy đổi 1 máy massage UMOS cụ thể tại quầy (KHÔNG cho KH chọn loại khác)
+- POS bán 1 trong 8 SKU CT2 → in voucher quà tag `Pool A` (xem §5.1)
+- **KH cầm voucher ra quầy → chọn 1 máy bất kỳ trong Pool A đang có tại salon** (không map cứng 1 SKU → 1 loại máy)
+- Lý do: salon có tồn cục bộ khác nhau, mỗi salon còn các loại máy khác nhau → cho KH linh hoạt chọn = giảm rủi ro "hết đúng loại"
+- SM scan voucher + chọn Mã Misa máy KH lấy → ghi nhận xuất kho
 - Voucher có thời hạn 30 ngày từ ngày mua
 - Mã voucher đã dùng → POS đánh dấu redeem
 
 ---
 
-## 5. POOL QUÀ — DANH SÁCH MÁY MASSAGE UMOS
+## 5. POOL QUÀ — KH CHỌN TRONG POOL (không map cứng 1-1)
 
-### 5.1 Pool A — Quà thường (CT1 mức 1: Bill 3M-5,99M · CT2 các SKU 6 buổi)
+**Lý do thiết kế Pool**: Salon có tồn máy cục bộ khác nhau. Cho KH chọn 1 máy trong Pool → linh hoạt với tồn từng salon, không bị "hết đúng loại đã map".
 
-| Mã Misa | Tên sản phẩm | Tồn | BQGQ có VAT (đ/máy) | Phân nhóm dùng |
-|---|---|---:|---:|---|
-| **MAYMS_015** | Máy Massage CVG UMOS N12.2 (6 điểm) | 12 | 286.447 | CT2-8002, 8005 |
-| **MAYMS_001** | Máy Massage CVG UMOS N11 (6 điểm) | 19 | 372.718 | CT2-8003, 8006, 8008 |
-| **MAYMS_002** | Máy Massage CVG UMOS N9 (6 điểm) | 2 | 198.000 | CT1 Pool A |
-| **MAYMS_010** | Máy Massage CVG UMOS AVS-S7 N12 | 19 | 445.255 | CT2-8001, 8007 |
-| **MAYMS_011** | Máy Massage CVG VLT UMOS 202W | 2 | 305.806 | CT1 Pool A |
-| **MAYMS_013** | Máy Massage Mắt UMOS M810 (16 điểm) | 10 | 394.281 | CT1 Pool A |
-| **MASM_001** | Máy Massage Mắt UMOS YK810 (16 điểm) | 52 | 399.398 | CT1 Pool A |
-| **MAYMS_006** | Máy Massage Mắt UMOS AR-216D | 7 | 336.808 | CT2-8004 |
-| | **Tổng Pool A** | **123 máy** | | |
+### 5.1 POOL A — KH chọn 1 máy bất kỳ (CT1 mức Bill 3M-5,99M + Mọi SKU CT2)
 
-### 5.2 Pool B — Quà cao cấp (CT1 mức 2: Bill ≥ 6M)
+| Mã Misa | Tên sản phẩm | Tồn | BQGQ có VAT (đ/máy) |
+|---|---|---:|---:|
+| **MAYMS_001** | Máy Massage CVG UMOS N11 (6 điểm) | 19 | 372.718 |
+| **MAYMS_002** | Máy Massage CVG UMOS N9 (6 điểm) | 2 | 198.000 |
+| **MAYMS_010** | Máy Massage CVG UMOS AVS-S7 N12 | 19 | 445.255 |
+| **MAYMS_011** | Máy Massage CVG VLT UMOS 202W | 2 | 305.806 |
+| **MAYMS_015** | Máy Massage CVG UMOS N12.2 (6 điểm) | 12 | 286.447 |
+| **MAYMS_006** | Máy Massage Mắt UMOS AR-216D | 7 | 336.808 |
+| **MAYMS_013** | Máy Massage Mắt UMOS M810 (16 điểm) | 10 | 394.281 |
+| **MASM_001** | Máy Massage Mắt UMOS YK810 (16 điểm) | 52 | 399.398 |
+| | **Tổng Pool A** | **123 máy** | |
 
-| Mã Misa | Tên sản phẩm | Tồn | BQGQ có VAT (đ/máy) | Phân nhóm dùng |
-|---|---|---:|---:|---|
-| **MAYMS_004** | Máy Massage Cơ Bắp UMOS MG2230 (6 đầu) | 29 | 615.036 | CT1 Pool B chính |
-| **MAYMS_003** | Máy Massage Cơ Bắp UMOS MG1S00E | 5 | 552.842 | CT1 Pool B |
-| **MAYMS_007** | Máy Massage Mắt UMOS AS-EM05 (cao cấp) | 10 | 615.870 | CT1 Pool B |
-| | **Tổng Pool B** | **44 máy** | | |
+→ Voucher tag **POOL_A** — SM quẩn quanh quầy, KH thấy máy nào còn ở salon thì chọn
 
-### 5.3 Tổng tồn: **167 máy** — IT cần báo cáo trừ tồn realtime sau mỗi deal
+### 5.2 POOL B — KH chọn 1 máy cao cấp (CT1 mức Bill ≥ 6M)
+
+| Mã Misa | Tên sản phẩm | Tồn | BQGQ có VAT (đ/máy) |
+|---|---|---:|---:|
+| **MAYMS_003** | Máy Massage Cơ Bắp UMOS MG1S00E | 5 | 552.842 |
+| **MAYMS_004** | Máy Massage Cơ Bắp UMOS MG2230 (6 đầu) | 29 | 615.036 |
+| **MAYMS_007** | Máy Massage Mắt UMOS AS-EM05 (cao cấp) | 10 | 615.870 |
+| | **Tổng Pool B** | **44 máy** | |
+
+→ Voucher tag **POOL_B** — KH chọn 1 trong 3 dòng máy cao cấp
+
+### 5.3 Cơ chế chọn quà tại quầy
+
+1. KH nhận voucher từ POS (tag POOL_A hoặc POOL_B)
+2. KH ra quầy lễ tân → xem máy thật đang trưng bày tại salon đó
+3. KH chọn 1 máy bất kỳ trong cùng pool còn tồn tại salon
+4. SM scan voucher + nhập Mã Misa máy KH lấy → POS trừ tồn realtime
+5. Voucher đánh dấu redeem
+
+### 5.4 Tổng tồn: **167 máy** — IT cần báo cáo trừ tồn realtime theo từng Mã Misa & từng salon
 
 ---
 
