@@ -9,6 +9,13 @@
   body{background:#f5f7fa;padding:20px 12px;min-height:100vh;color:#1a2855;line-height:1.55}
   .doc{max-width:880px;margin:0 auto}
 
+  /* BADGE GÓC TRÁI — phân biệt CT cho Topup Thẻ Trả Trước */
+  .ctkm-badge{position:fixed;top:14px;left:14px;z-index:999;background:linear-gradient(135deg,#00A9E0 0%,#0085BD 100%);color:#fff;padding:8px 14px;border-radius:10px;font-size:11.5px;font-weight:800;letter-spacing:.5px;box-shadow:0 6px 18px rgba(0,169,224,.4);display:flex;align-items:center;gap:6px;line-height:1.2}
+  .ctkm-badge .ic{font-size:14px}
+  .ctkm-badge .sub{display:block;font-size:9.5px;font-weight:600;letter-spacing:1.5px;color:#cdeefb;margin-top:1px}
+  @media(max-width:600px){.ctkm-badge{top:8px;left:8px;padding:6px 10px;font-size:10.5px} .ctkm-badge .sub{font-size:8.5px}}
+  @media print{.ctkm-badge{display:none}}
+
   /* LOGO 30SHINE — wordmark chuẩn brand */
   .logo-30s{display:inline-flex;align-items:center;background:#00A9E0;color:#fff;padding:5px 14px 5px 12px;border-radius:8px;font-weight:900;font-size:18px;letter-spacing:0;line-height:1;box-shadow:0 4px 14px rgba(0,169,224,.35);font-family:'Helvetica Neue',Arial,sans-serif}
   .logo-30s .nm-1{margin-right:3px}
@@ -149,6 +156,12 @@
 </head>
 <body>
 
+<!-- BADGE CTKM TOPUP — góc trái phân biệt -->
+<div class="ctkm-badge">
+  <span class="ic">💳</span>
+  <div>TOPUP · THẺ TRẢ TRƯỚC<span class="sub">CTKM CHUYÊN BIỆT T5/2026</span></div>
+</div>
+
 <div class="doc">
 
 <!-- HEADER -->
@@ -250,7 +263,7 @@
       <span class="bill">3M</span>
     </div>
     <div class="tier-dt">
-      Mua 2 thẻ Topup Loyalty hoặc 1 gói Combo 4 đơn
+      Mua 2 thẻ Topup Loyalty hoặc 1 gói Combo 4 (≥ 3 triệu/lần thanh toán)
     </div>
     <div class="tier-gift">
       🎁 Tặng <b>Máy massage Cổ Vai Gáy UMOS</b> — retail 1-1,5 triệu
@@ -263,7 +276,7 @@
       <span class="bill">6M</span>
     </div>
     <div class="tier-dt">
-      Mua 3 thẻ Loyalty hoặc 1 gói Gội trải nghiệm 75p (T1)
+      Mua 3 thẻ Topup Loyalty hoặc 1 gói Gội Trải nghiệm 75p (≥ 6 triệu/lần thanh toán)
     </div>
     <div class="tier-gift">
       🎁 Tặng <b>Máy massage Cơ Bắp UMOS MG2230</b> — retail 2-2,5 triệu
@@ -280,8 +293,8 @@
 <!-- CHƯƠNG TRÌNH 2 -->
 <!-- ====================================================== -->
 <div class="card ct2">
-  <h2><span class="ico">2</span> Buổi lẻ · Không tặng buổi · Tặng máy thay buổi</h2>
-  <p class="lead">KH chần chừ với gói 6+1 cũ ("tặng 1 buổi méo tham") — giờ có lựa chọn mới: bỏ giá lẻ × số buổi, nhận máy massage to thay vì buổi tặng</p>
+  <h2><span class="ico">2</span> Mua nguyên giá · Không tặng buổi · Tặng máy thay vì buổi tặng</h2>
+  <p class="lead">KH chần chừ với gói 6+1 cũ (1 buổi tặng chưa đủ hấp dẫn) — giờ có lựa chọn mới: mua nguyên giá (= giá lẻ × số buổi), nhận máy massage to thay vì buổi tặng</p>
 
   <div class="info">
     <div class="info-it">
@@ -295,32 +308,33 @@
   </div>
 
   <p style="font-size:13px;color:#444;line-height:1.6;margin:10px 0">
-    <b>Cách bán:</b> KH bỏ giá lẻ × số buổi (mua nguyên giá) → KHÔNG nhận buổi tặng → nhận <b style="color:#d4af37">Máy massage UMOS chính hãng</b> thay vì 1-2 buổi tặng. KH cảm giác <b style="color:#27ae60">"lời 50-70%"</b>.
+    <b>Cách bán:</b> KH trả nguyên giá (= giá lẻ × số buổi) → KHÔNG nhận buổi tặng → nhận <b style="color:#d4af37">Máy massage UMOS chính hãng</b> thay vì 1-2 buổi tặng. KH cảm giác <b style="color:#27ae60">"lời 50-70%"</b>.
   </p>
 
   <div class="tbl">
     <table>
       <thead>
         <tr>
-          <th>SKU</th>
+          <th>Mã SKU mới</th>
           <th>Tên gói</th>
           <th>Buổi</th>
-          <th>Giá</th>
+          <th>Giá Topup</th>
           <th>Quà tặng</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>5305</td><td>Combo 4</td><td>6</td><td>2.334K</td><td>Máy CVG</td></tr>
-        <tr><td>5303</td><td>Cắt Gội C3 Chăm da</td><td>6</td><td>1.794K</td><td>Máy CVG</td></tr>
-        <tr><td>5238</td><td>Gội Combo 4</td><td>6</td><td>1.734K</td><td>Máy CVG</td></tr>
-        <tr><td>5327</td><td>Gội C3 Chăm da</td><td>6</td><td>1.314K</td><td>Máy CVG/Mắt</td></tr>
-        <tr><td>5893</td><td>Gội Combo 2 (10+2)</td><td>10</td><td>1.590K</td><td>Máy CVG</td></tr>
-        <tr><td>5833</td><td>Gội C3 Chăm da (10+2)</td><td>10</td><td>2.190K</td><td>Máy CVG</td></tr>
-        <tr><td>5829</td><td>Cắt Gội C3 Chăm da (10+2)</td><td>10</td><td>2.990K</td><td>Máy CVG</td></tr>
-        <tr><td>5330</td><td>Gội Combo 3 Dưỡng sinh (10+2)</td><td>10</td><td>2.190K</td><td>Máy CVG</td></tr>
+        <tr><td>8001</td><td>Combo 4</td><td>6</td><td>2.334K</td><td>Máy Pool A</td></tr>
+        <tr><td>8002</td><td>Cắt Gội C3 Chăm da</td><td>6</td><td>1.794K</td><td>Máy Pool A</td></tr>
+        <tr><td>8003</td><td>Gội Combo 4</td><td>6</td><td>1.734K</td><td>Máy Pool A</td></tr>
+        <tr><td>8004</td><td>Gội C3 Chăm da</td><td>6</td><td>1.314K</td><td>Máy Pool A</td></tr>
+        <tr><td>8005</td><td>Gội Combo 2</td><td>10</td><td>1.590K</td><td>Máy Pool A</td></tr>
+        <tr><td>8006</td><td>Gội C3 Chăm da</td><td>10</td><td>2.190K</td><td>Máy Pool A</td></tr>
+        <tr><td>8007</td><td>Cắt Gội C3 Chăm da</td><td>10</td><td>2.990K</td><td>Máy Pool A</td></tr>
+        <tr><td>8008</td><td>Gội C3 Dưỡng sinh</td><td>10</td><td>2.190K</td><td>Máy Pool A</td></tr>
       </tbody>
     </table>
   </div>
+  <p style="font-size:12px;color:#666;font-style:italic;margin-top:6px">→ Mã 8001-8008 là gợi ý. ID IT thực tế xem ở mục "🛠️ Mã IT Setup" phía trên.</p>
 
   <div class="pitch">
     <div class="lb">🗣️ NV PITCH GỢI Ý</div>
@@ -475,7 +489,7 @@
     <li><b>Trước 17h 14/05:</b> Đào tạo 100% NV salon — ngưỡng bill 3M/6M, 8 SKU CT2, Pool A/B</li>
     <li><b>Trước 17h 14/05:</b> Kiểm tra POS — 8 SKU mới + flag CT1 đã sẵn sàng</li>
     <li><b>Daily 15-31/5:</b> Brief 5ph đầu ca · ghi sổ voucher in/redeem · báo cáo cuối ca cho Sale Sup</li>
-    <li><b>Báo Sale Sup khi tồn máy < 3</b> → đề nghị điều bổ sung</li>
+    <li><b>Báo Sale Sup khi tồn máy &lt; 3 máy/loại</b> → đề nghị điều bổ sung</li>
     <li><b>Cuối tuần:</b> Tổng hợp ≥ 3 feedback KH/NV — gửi GĐKV + Khối TM mỗi T7</li>
   </ul>
 </div>
@@ -656,8 +670,8 @@
       </label>
       <label style="display:block;padding:11px 14px;background:#fff;border:1px solid #d0d6e0;border-radius:8px;margin-bottom:6px;cursor:pointer;font-size:13.5px">
         <input type="radio" name="ChuongTrinh" value="CT2 - Buổi lẻ · Tặng máy thay buổi" required style="margin-right:10px">
-        <b style="color:#f39c12">CT2 — Buổi lẻ · Tặng máy thay buổi tặng</b><br>
-        <small style="color:#666;margin-left:24px">Cho KH chần chừ · 1,3-3M</small>
+        <b style="color:#f39c12">CT2 — Mua nguyên giá · Tặng máy thay buổi tặng</b><br>
+        <small style="color:#666;margin-left:24px">Cho KH chần chừ · Mua nguyên giá là tặng máy</small>
       </label>
       <label style="display:block;padding:11px 14px;background:#fff;border:1px solid #d0d6e0;border-radius:8px;cursor:pointer;font-size:13.5px">
         <input type="radio" name="ChuongTrinh" value="Cả 2 CT" required style="margin-right:10px">
